@@ -108,7 +108,7 @@ public class ViewTest extends JFrame {
 	
 	public static void main(String[] args) {
 		new ViewTest();
-	}
+	} 
 
 }
 //		reservationNumber = new JLabel("예매번호");
