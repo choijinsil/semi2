@@ -15,13 +15,14 @@ public class ChoiceView extends JFrame {
 	public JPanel p1, p2, p3;
 
 	// JComboBox 선언
-	public JComboBox<String> cb_year, cb_month, cb_day;
+	public JComboBox<String> cbYear, cbMonth, cbDay;
 
 	// 날짜배열 선언
 	public ArrayList<String> yeararray; // 년도
 	public ArrayList<String> montharray; // 월
 	public ArrayList<String> dayarray; // 일
-
+	
+	// 3관 까지 배열 만드리기
 	public ChoiceView() {
 		cal();
 
@@ -35,15 +36,14 @@ public class ChoiceView extends JFrame {
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
-		cb_year.setPreferredSize(new Dimension(150, 50));
-		cb_month.setPreferredSize(new Dimension(150, 50));
-		cb_day.setPreferredSize(new Dimension(150, 50));
+		cbYear.setPreferredSize(new Dimension(150, 50));
+		cbMonth.setPreferredSize(new Dimension(150, 50));
+		cbDay.setPreferredSize(new Dimension(150, 50));
 
 		p1.add(movieF);
-		// p2.add(dateF);
-		p2.add(cb_year);
-		p2.add(cb_month);
-		p2.add(cb_day);
+		p2.add(cbYear);
+		p2.add(cbMonth);
+		p2.add(cbDay);
 		p3.add(timeF);
 
 		add(p1);
@@ -78,27 +78,27 @@ public class ChoiceView extends JFrame {
 		for (int i = year; i <= year + 1; i++) {
 			yeararray.add(String.valueOf(i));
 		}
-		cb_year = new JComboBox<String>(yeararray.toArray(new String[yeararray.size()]));
-		cb_year.setSelectedItem(String.valueOf(year));
+		cbYear = new JComboBox<String>(yeararray.toArray(new String[yeararray.size()]));
+		cbYear.setSelectedItem(String.valueOf(year));
 
 		// 월
 		for (int i = 1; i <= 12; i++) {
 			montharray.add(addZeroString(i));
 		}
-		cb_month = new JComboBox<String>(montharray.toArray(new String[montharray.size()]));
+		cbMonth = new JComboBox<String>(montharray.toArray(new String[montharray.size()]));
 
 		String mcom = month >= 10 ? String.valueOf(month) : "0" + month;
-		cb_month.setSelectedItem(mcom);
+		cbMonth.setSelectedItem(mcom);
 
 		// 일
 		int m = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 이번달 최대 일자 구하기
 		for (int i = 1; i <= m; i++) {
 			dayarray.add(addZeroString(i));
 		}
-		cb_day = new JComboBox<String>(dayarray.toArray(new String[dayarray.size()]));
+		cbDay = new JComboBox<String>(dayarray.toArray(new String[dayarray.size()]));
 
 		String dcom = today >= 10 ? String.valueOf(today) : "0" + today;
-		cb_day.setSelectedItem(dcom);
+		cbDay.setSelectedItem(dcom);
 	}
 
 	public static void main(String[] args) {

@@ -2,8 +2,8 @@ package com.test;
 
 public class Test {
 	public static void main(String[] args) {
-		System.out.println("¾È³ç?");
-		System.out.println("Å×½ºÆ®¾ß1");
+		System.out.println("ì•ˆë…•?");
+		System.out.println("ï¿½×½ï¿½Æ®ï¿½ï¿½1");
 	} 
  
 }
