@@ -1,7 +1,7 @@
 package com.test;
 
  
-//수정함  
+//수정함 mon 
 import java.awt.Font;
 import java.awt.TextField;
 
@@ -95,7 +95,7 @@ public class ViewTest extends JFrame {
 	public static void main(String[] args) {
 		new ViewTest();
 	} 
-      
+
 }
 //		reservationNumber = new JLabel("예매번호");
 //		movieTitle = new JLabel("영화제목");
