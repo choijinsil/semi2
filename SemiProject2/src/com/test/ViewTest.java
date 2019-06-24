@@ -1,21 +1,7 @@
 package com.test;
 
-/**
- * 클래스에 대한 설명을 여기에 쓴다.
- * 
- * @author 	sjcnew
- * @since 	2019. 6. 23.
- * @version 1.0
- * @see <pre>
- *  == 개정이력(Modification Information) ==
- *   
- *   수정일			수정자				수정내용
- *  ---------------------------------------------------------------------------------
- *   2019. 6. 23.		sjcnew				최초생성
- * 
- * </pre>
- */
-
+ 
+//수정함
 import java.awt.Font;
 import java.awt.TextField;
 
@@ -109,7 +95,7 @@ public class ViewTest extends JFrame {
 	public static void main(String[] args) {
 		new ViewTest();
 	} 
-
+      
 }
 //		reservationNumber = new JLabel("예매번호");
 //		movieTitle = new JLabel("영화제목");
