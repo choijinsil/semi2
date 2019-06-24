@@ -1,0 +1,1 @@
+insert into schedule values (19062401, 19062401, 1, '19/06/14');
