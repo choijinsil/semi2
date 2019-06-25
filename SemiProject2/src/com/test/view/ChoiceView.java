@@ -33,7 +33,7 @@ public class ChoiceView extends JFrame {
 
 		p1 = new JPanel();
 		p2 = new JPanel();
-		p3 = new JPanel();
+		p3 = new JPanel(); 
 
 		movieF = new JTextField("영화");
 		dateF = new JTextField("날짜");
