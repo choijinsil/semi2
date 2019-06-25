@@ -51,7 +51,7 @@ public class ChoiceView extends JFrame {
 		add(p3);
 
 		setVisible(true);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	}
 
 	// 한자리 숫자 앞에 + 0 예) 7일 -> 07일
