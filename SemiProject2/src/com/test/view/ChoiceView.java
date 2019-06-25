@@ -18,9 +18,9 @@ public class ChoiceView extends JFrame {
 	public JComboBox<String> cbYear, cbMonth, cbDay;
 
 	// 날짜배열 선언
-	public ArrayList<String> yearArray; // 년도
-	public ArrayList<String> monthArray; // 월
-	public ArrayList<String> dayArray; // 일
+	public ArrayList<String> yeararray; // 년도
+	public ArrayList<String> montharray; // 월
+	public ArrayList<String> dayarray; // 일
 	
 	// 3관 까지 배열 만드리기
 	public ChoiceView() {
@@ -51,7 +51,7 @@ public class ChoiceView extends JFrame {
 		add(p3);
 
 		setVisible(true);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 	// 한자리 숫자 앞에 + 0 예) 7일 -> 07일
@@ -65,9 +65,9 @@ public class ChoiceView extends JFrame {
 
 	public void cal() {
 		Calendar calendar = Calendar.getInstance(); // 현재 날짜/시간 등의 각종 정보 얻기
-		yearArray = new ArrayList<String>();
-		monthArray = new ArrayList<String>();
-		dayArray = new ArrayList<String>();
+		yeararray = new ArrayList<String>();
+		montharray = new ArrayList<String>();
+		dayarray = new ArrayList<String>();
 
 		// 현재 날짜
 		int year = calendar.get(Calendar.YEAR);
@@ -76,16 +76,16 @@ public class ChoiceView extends JFrame {
 
 		// 년도
 		for (int i = year; i <= year + 1; i++) {
-			yearArray.add(String.valueOf(i));
+			yeararray.add(String.valueOf(i));
 		}
-		cbYear = new JComboBox<String>(yearArray.toArray(new String[yearArray.size()]));
+		cbYear = new JComboBox<String>(yeararray.toArray(new String[yeararray.size()]));
 		cbYear.setSelectedItem(String.valueOf(year));
 
 		// 월
 		for (int i = 1; i <= 12; i++) {
-			monthArray.add(addZeroString(i));
+			montharray.add(addZeroString(i));
 		}
-		cbMonth = new JComboBox<String>(monthArray.toArray(new String[monthArray.size()]));
+		cbMonth = new JComboBox<String>(montharray.toArray(new String[montharray.size()]));
 
 		String mcom = month >= 10 ? String.valueOf(month) : "0" + month;
 		cbMonth.setSelectedItem(mcom);
@@ -93,9 +93,9 @@ public class ChoiceView extends JFrame {
 		// 일
 		int m = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 이번달 최대 일자 구하기
 		for (int i = 1; i <= m; i++) {
-			dayArray.add(addZeroString(i));
+			dayarray.add(addZeroString(i));
 		}
-		cbDay = new JComboBox<String>(dayArray.toArray(new String[dayArray.size()]));
+		cbDay = new JComboBox<String>(dayarray.toArray(new String[dayarray.size()]));
 
 		String dcom = today >= 10 ? String.valueOf(today) : "0" + today;
 		cbDay.setSelectedItem(dcom);
