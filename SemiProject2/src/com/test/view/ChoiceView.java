@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,13 +16,15 @@ public class ChoiceView extends JFrame {
 	public JPanel p1, p2, p3;
 
 	// JComboBox 선언
-	public JComboBox<String> cbYear, cbMonth, cbDay;
+	public JComboBox<String> cbYear, cbMonth, cbDay, movieTime;
 
 	// 날짜배열 선언
 	public ArrayList<String> yearArray; // 년도
 	public ArrayList<String> monthArray; // 월
 	public ArrayList<String> dayArray; // 일
-	
+
+	public String[] str = { "1시", "3시", "5시" };
+
 	// 3관 까지 배열 만드리기
 	public ChoiceView() {
 		cal();
@@ -36,14 +39,24 @@ public class ChoiceView extends JFrame {
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
+		movieTime = new JComboBox<String>(str);
+
+//		movieTime.setSelectedItem("1시");
+//		movieTime.setSelectedItem("3시");
+//		movieTime.setSelectedItem("5시");
+
 		cbYear.setPreferredSize(new Dimension(150, 50));
 		cbMonth.setPreferredSize(new Dimension(150, 50));
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
 		p1.add(movieF);
+
 		p2.add(cbYear);
 		p2.add(cbMonth);
 		p2.add(cbDay);
+
+		p3.add(movieTime);
+
 		p3.add(timeF);
 
 		add(p1);
