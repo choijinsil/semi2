@@ -14,6 +14,16 @@ public class ChoiceView extends JFrame {
 	public JTextField movieF, dateF, timeF;
 	public JPanel p1, p2, p3;
 
+	//영화선택 콤보박스
+	public JComboBox<String> cbMovie;
+
+	// 영화배열 선언
+	public ArrayList<String> movieArray; 
+	
+	
+	
+	
+	
 	// JComboBox 선언
 	public JComboBox<String> cbYear, cbMonth, cbDay;
 
@@ -23,7 +33,12 @@ public class ChoiceView extends JFrame {
 	public ArrayList<String> dayArray; // 일
 	
 	// 3관 까지 배열 만드리기
+	
+	
+	
+	
 	public ChoiceView() {
+		mov();
 		cal();
 
 		setLayout(new GridLayout(1, 3));
@@ -36,11 +51,13 @@ public class ChoiceView extends JFrame {
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
+		cbMovie.setPreferredSize(new Dimension(450,50));
+		
 		cbYear.setPreferredSize(new Dimension(150, 50));
 		cbMonth.setPreferredSize(new Dimension(150, 50));
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
-		p1.add(movieF);
+		p1.add(cbMovie);
 		p2.add(cbYear);
 		p2.add(cbMonth);
 		p2.add(cbDay);
@@ -61,6 +78,13 @@ public class ChoiceView extends JFrame {
 			value = "0" + value;
 		}
 		return value;
+	}
+	
+	public void mov() {
+		movieArray = new ArrayList<String>();
+		movieArray.add("알라딘");
+		movieArray.add("숟가락귀신");
+		movieArray.add("기사합격지키기");
 	}
 
 	public void cal() {
