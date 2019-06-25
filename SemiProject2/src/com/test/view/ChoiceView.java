@@ -15,16 +15,12 @@ public class ChoiceView extends JFrame {
 	public JTextField movieF, dateF, timeF;
 	public JPanel p1, p2, p3;
 
-	//영화선택 콤보박스
+	// 영화선택 콤보박스
 	public JComboBox<String> cbMovie;
 
 	// 영화배열 선언
-	public ArrayList<String> movieArray; 
-	
-	
-	
-	
-	
+	public String[] movieArray = {"알라딘", "숟가락귀신", "발표왕"};
+
 	// JComboBox 선언
 	public JComboBox<String> cbYear, cbMonth, cbDay, movieTime;
 
@@ -33,15 +29,12 @@ public class ChoiceView extends JFrame {
 	public ArrayList<String> monthArray; // 월
 	public ArrayList<String> dayArray; // 일
 
+	// 시간 배열 선언
 	public String[] str = { "1시", "3시", "5시" };
 
 	// 3관 까지 배열 만드리기
-	
-	
-	
-	
+
 	public ChoiceView() {
-		mov();
 		cal();
 
 		setLayout(new GridLayout(1, 3));
@@ -54,27 +47,22 @@ public class ChoiceView extends JFrame {
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
-<<<<<<< HEAD
+		cbMovie = new JComboBox<String>(movieArray);
 		cbMovie.setPreferredSize(new Dimension(450,50));
-		
-=======
 		movieTime = new JComboBox<String>(str);
 
 //		movieTime.setSelectedItem("1시");
 //		movieTime.setSelectedItem("3시");
 //		movieTime.setSelectedItem("5시");
 
->>>>>>> branch 'master' of https://github.com/choijinsil/semi2
 		cbYear.setPreferredSize(new Dimension(150, 50));
 		cbMonth.setPreferredSize(new Dimension(150, 50));
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
-<<<<<<< HEAD
 		p1.add(cbMovie);
-=======
+
 		p1.add(movieF);
 
->>>>>>> branch 'master' of https://github.com/choijinsil/semi2
 		p2.add(cbYear);
 		p2.add(cbMonth);
 		p2.add(cbDay);
@@ -99,13 +87,7 @@ public class ChoiceView extends JFrame {
 		}
 		return value;
 	}
-	
-	public void mov() {
-		movieArray = new ArrayList<String>();
-		movieArray.add("알라딘");
-		movieArray.add("숟가락귀신");
-		movieArray.add("기사합격지키기");
-	}
+
 
 	public void cal() {
 		Calendar calendar = Calendar.getInstance(); // 현재 날짜/시간 등의 각종 정보 얻기
