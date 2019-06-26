@@ -133,6 +133,7 @@ DROP INDEX PK_Seat;
 CREATE TABLE Seat (
 	seatNum NUMBER NOT NULL, /* 좌석번호 */
 	screenNum NUMBER NOT NULL, /* 상영관번호 */
+	seatName VARCHAR2(10) NOT NULL, /* 좌석이름 */
 	seatState NUMBER NOT NULL /* 좌석배정유무 */
 );
 
@@ -141,6 +142,8 @@ COMMENT ON TABLE Seat IS '좌석';
 COMMENT ON COLUMN Seat.seatNum IS '좌석번호';
 
 COMMENT ON COLUMN Seat.screenNum IS '상영관번호';
+
+COMMENT ON COLUMN Seat.seatName IS '좌석이름';
 
 COMMENT ON COLUMN Seat.seatState IS '좌석배정유무';
 
