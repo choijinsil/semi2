@@ -16,18 +16,20 @@ public class ChoiceView extends JFrame {
 	public JPanel p1, p2, p3;
 
 	// JComboBox 선언
-	public JComboBox<String> cbYear, cbMonth, cbDay, movieTime;
-
+	public JComboBox<String> cbMovie, cbYear, cbMonth, cbDay, movieTime;
+	
 	// 날짜배열 선언
 	public ArrayList<String> yearArray; // 년도
 	public ArrayList<String> monthArray; // 월
 	public ArrayList<String> dayArray; // 일
 
+	public String[] movieTitle = { "알라딘", "숟가락 살인마", "발표왕" };
 	public String[] str = { "1시", "3시", "5시" };
 
 	// 3관 까지 배열 만드리기
 	public ChoiceView() {
 		cal();
+		
 
 		setLayout(new GridLayout(1, 3));
 
@@ -38,19 +40,24 @@ public class ChoiceView extends JFrame {
 		movieF = new JTextField("영화");
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
-
+		
+		cbMovie = new JComboBox<String>(movieTitle);
+		System.out.println(cbMovie.getSelectedItem());
 		movieTime = new JComboBox<String>(str);
 
 //		movieTime.setSelectedItem("1시");
 //		movieTime.setSelectedItem("3시");
 //		movieTime.setSelectedItem("5시");
 
+		cbMovie.setPreferredSize(new Dimension(450, 100));
 		cbYear.setPreferredSize(new Dimension(150, 50));
 		cbMonth.setPreferredSize(new Dimension(150, 50));
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
+		
+		p1.add(cbMovie);
 		p1.add(movieF);
-
+		
 		p2.add(cbYear);
 		p2.add(cbMonth);
 		p2.add(cbDay);
@@ -65,6 +72,9 @@ public class ChoiceView extends JFrame {
 
 		setVisible(true);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+		
+		
 	}
 
 	// 한자리 숫자 앞에 + 0 예) 7일 -> 07일
@@ -113,10 +123,14 @@ public class ChoiceView extends JFrame {
 		String dcom = today >= 10 ? String.valueOf(today) : "0" + today;
 		cbDay.setSelectedItem(dcom);
 	}
+	public void getMovieTitle()
+	{
+		System.out.println(cbMovie.getSelectedIndex());
+	}
 
 	public static void main(String[] args) {
 		new ChoiceView();
-
+		
 	}
 
 }
