@@ -1,4 +1,4 @@
-package com.test.view;
+package com.movie.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
