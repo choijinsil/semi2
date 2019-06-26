@@ -3,7 +3,6 @@ package com.movie.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.movie.dao.PaymentDAO;
 import com.movie.view.PasswordCheckView;
 import com.movie.view.PaymentView;
 

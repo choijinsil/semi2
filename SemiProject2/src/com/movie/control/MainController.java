@@ -20,18 +20,20 @@ public class MainController {
 	SeatView sv;
 
 	public MainController() {
-		cc = new ChoiceController();
+		cc = new ChoiceController(cv);
 		hc = new HomeController();
 		pc = new PaymentController();
 		sc = new SeatController();
-		
-		rd = new ReservationDAO();
 		
 		// view
 		cv = new ChoiceView();
 		hv = new HomeView();
 		pv = new PaymentView();
 		sv = new SeatView();
+	}
+	
+	public static void main(String[] args) {
+		new MainController();
 	}
 	
 }
