@@ -8,6 +8,10 @@ public class MovieVO {
 	String screenTime;
 	String seatName;
 	
+	public MovieVO() {
+		this.movieTitle= movieTitle;
+	}
+	
 	public MovieVO(String movieTitle) {
 		this.movieTitle= movieTitle;
 	}

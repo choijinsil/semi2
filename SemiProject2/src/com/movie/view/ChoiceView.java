@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.movie.VO.MovieVO;
+
 public class ChoiceView extends JFrame {
 	public JTextField movieF, dateF, timeF;
 	public JPanel p1, p2, p3;
@@ -23,7 +25,7 @@ public class ChoiceView extends JFrame {
 	public ArrayList<String> monthArray; // 월
 	public ArrayList<String> dayArray; // 일
 
-	public String[] movieTitle = { "알라딘", "숟가락 살인마", "발표왕" };
+//	public String[] movieTitle = { "알라딘", "숟가락 살인마", "발표왕" };
 	public String[] str = { "1시", "3시", "5시" };
 
 	// 3관 까지 배열 만드리기
@@ -40,8 +42,7 @@ public class ChoiceView extends JFrame {
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
-		cbMovie = new JComboBox<String>(movieTitle);
-		System.out.println(cbMovie.getSelectedItem());
+		cbMovie = new JComboBox<String>();
 		movieTime = new JComboBox<String>(str);
 
 //		movieTime.setSelectedItem("1시");
@@ -54,6 +55,7 @@ public class ChoiceView extends JFrame {
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
 		p1.add(cbMovie);
+		
 		p1.add(movieF);
 
 		p2.add(cbYear);
@@ -131,10 +133,14 @@ public class ChoiceView extends JFrame {
 
 	public void displayTable(ArrayList<MovieVO> list) {
 
+		System.out.println("list.size()>>"+list.size());
 		for (int i = 0; i < list.size(); i++) {
-			MovieVO vo = list.get(i);
-
-		}
+			
+			
+			cbMovie.addItem(list.get(i).getMovieTitle()); 
+		}	
+	
+	
 	}// displayTable
 
 
