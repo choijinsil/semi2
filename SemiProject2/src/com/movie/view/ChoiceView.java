@@ -2,12 +2,16 @@ package com.movie.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -18,7 +22,8 @@ public class ChoiceView extends JFrame {
 	public JPanel p1, p2, p3;
 
 	// JComboBox 선언
- 	public JComboBox<String> cbMovie, cbYear, cbMonth, cbDay, movieTime;
+
+	public JComboBox<String> cbMovie, cbYear, cbMonth, cbDay, movieTime;
 
 	// 날짜배열 선언
 	public ArrayList<String> yearArray; // 년도
@@ -26,7 +31,17 @@ public class ChoiceView extends JFrame {
 	public ArrayList<String> dayArray; // 일
 
 //	public String[] movieTitle = { "알라딘", "숟가락 살인마", "발표왕" };
+
 	public String[] str = { "1시", "3시", "5시" };
+
+	// 선택값
+	public String selMovie; // 타이틀
+	public int selMovieIdx; // 타이틀 인덱스
+
+	ImageIcon[] images = { new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"),
+			new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\bug.jpg"),
+			new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\toy.jpg") };
+	public JLabel imgLabel = new JLabel(images[0]);
 
 	// 3관 까지 배열 만드리기
 	public ChoiceView() {
@@ -43,6 +58,23 @@ public class ChoiceView extends JFrame {
 		timeF = new JTextField("시간");
 
 		cbMovie = new JComboBox<String>();
+
+		cbMovie = new JComboBox<String>();
+		// 영화 선택 값 넘기기, 이후 이미지 까지 변경하도록
+		cbMovie.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<String> cb = (JComboBox<String>) e.getSource();
+				selMovie = cb.getSelectedItem().toString();
+				selMovieIdx = cb.getSelectedIndex();
+				System.out.println(selMovieIdx);
+				// JOptionPane.showConfirmDialog(null, "선택한 영화는" + selMovie + "입니다. 맞습니까?");
+
+				imgLabel.setIcon(images[selMovieIdx]);
+			}
+		});
+
 		movieTime = new JComboBox<String>(str);
 
 //		movieTime.setSelectedItem("1시");
@@ -55,8 +87,9 @@ public class ChoiceView extends JFrame {
 		cbDay.setPreferredSize(new Dimension(150, 50));
 
 		p1.add(cbMovie);
-		
+
 		p1.add(movieF);
+		p1.add(imgLabel);
 
 		p2.add(cbYear);
 		p2.add(cbMonth);
@@ -122,6 +155,7 @@ public class ChoiceView extends JFrame {
 		cbDay.setSelectedItem(dcom);
 	}
 
+
 	public void getMovieTitle() {
 		System.out.println(cbMovie.getSelectedIndex());
 	}
@@ -129,19 +163,17 @@ public class ChoiceView extends JFrame {
 	public static void main(String[] args) {
 		new ChoiceView();
 
-	}
+		}
+
 
 	public void displayTable(ArrayList<MovieVO> list) {
 
-		System.out.println("list.size()>>"+list.size());
+		System.out.println("list.size()>>" + list.size());
 		for (int i = 0; i < list.size(); i++) {
-			
-			
-			cbMovie.addItem(list.get(i).getMovieTitle()); 
-		}	
-	
-	
-	}// displayTable
 
+			cbMovie.addItem(list.get(i).getMovieTitle());
+		}
+
+	}// displayTable
 
 }
