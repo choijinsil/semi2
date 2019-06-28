@@ -131,7 +131,7 @@ public class ChoiceView extends JFrame {
 		
 		
 		
-		setVisible(true);
+//		setVisible(true);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}

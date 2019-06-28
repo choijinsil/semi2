@@ -1,42 +1,68 @@
 
 package com.movie.control;
 
-import com.movie.dao.ReservationDAO;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.movie.view.ChoiceView;
 import com.movie.view.HomeView;
+import com.movie.view.ListView;
 import com.movie.view.PaymentView;
 import com.movie.view.SeatView;
+import com.movie.view.SignUpView;
 
 public class MainController {
 	ChoiceView cv;
 	HomeView hv;
 	PaymentView pv;
 	SeatView sv;
+	SignUpView sUv;
+	ListView lv;
 	
-	ReservationDAO rd;
 	
 	ChoiceController cc;			
 	HomeController hc;
 	PaymentController pc;
 	SeatController sc;
+	
+	Map<String, String> movieTmp;
 
 	
 	
 
 	
 	public MainController() {
+
+	//map
+	movieTmp = new HashMap<String, String>();
+	//여기다가 필요한 데이터 목록을 나열하고, 임시데이터를 넣어주세요
+	movieTmp.put("id", "hana");
+	movieTmp.put("memberNum", "");
+	movieTmp.put("quantity", "3");
+	movieTmp.put("seatNum", "2");
+	movieTmp.put("scheduleNum", "1906241");
+	movieTmp.put("totalCnt", "4");
+	
+	//뷰에 뿌릴 임시데이터 추가
+	movieTmp.put("screenDate", "19/01/08");
+	movieTmp.put("screenTime", "3");
+	movieTmp.put("resSeat", "a2 a3");
+	movieTmp.put("movieTitle","알라딘");
+
 	// view
 	cv = new ChoiceView();
 	hv = new HomeView();
 	pv = new PaymentView();
 	sv = new SeatView();
+	sUv = new SignUpView();
+	lv = new ListView();
 	
-
+	// controller
 	cc = new ChoiceController(this);
-	hc = new HomeController();
-	pc = new PaymentController();
-	sc = new SeatController();
-		
+	pc = new PaymentController(this);
+	sc = new SeatController(this);
+	hc = new HomeController(this);
+	
 
 	
 	}

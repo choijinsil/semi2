@@ -1,5 +1,6 @@
 package com.movie.dao;
 
-public class AdminDAO {
 
+public class AdminDAO {
+	
 }

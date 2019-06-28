@@ -7,9 +7,25 @@ public class MovieVO {
 	String screenDate;
 	String screenTime;
 	String seatName;
+	private int scheduleNum;
+	public int getScheduleNum() {
+		return scheduleNum;
+	}
+
+	public void setScheduleNum(int scheduleNum) {
+		this.scheduleNum = scheduleNum;
+	}
+
+	public String getResSeat() {
+		return resSeat;
+	}
+
+	public void setResSeat(String resSeat) {
+		this.resSeat = resSeat;
+	}
+	private String resSeat;
 	
 	public MovieVO() {
-		this.movieTitle= movieTitle;
 	}
 	
 	public MovieVO(String movieTitle) {
@@ -25,6 +41,27 @@ public class MovieVO {
 		this.screenTime = screenTime;
 		this.seatName = seatName;
 	}
+	
+//////////////////////////////////moon 예약정보뷰에 뿌
+
+
+	public MovieVO(int resNum, int scheduleNum, String resSeat) {
+	this.resNum = resNum;
+	this.scheduleNum = scheduleNum;
+	this.resSeat = resSeat;
+	}
+	
+	public MovieVO(int resNum, String movieTitle, String screenDate, String screenTime, String resSeat) {
+	super();
+	this.resNum = resNum;
+	this.movieTitle = movieTitle;
+	this.screenDate = screenDate;
+	this.screenTime = screenTime;
+	this.resSeat = resSeat;
+	}
+
+//////////////////////////////////////////////////////////////
+	
 	
 	public int getQuantity() {
 		return quantity;
