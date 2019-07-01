@@ -70,6 +70,13 @@ public class HomeController implements ActionListener,FocusListener {
 		sUv.checkIdButton.addActionListener(this);
 		
 		lv.rescancelButton.addActionListener(this);
+		lv.backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lv.setVisible(false);
+				hv.setVisible(true);
+			}
+		});
 	}
 
 	@Override

@@ -196,17 +196,17 @@ public class ReservationDAO {
 			      }
 			      return false;
 			   }
-
+//////////////////////////////////////////////////////////////////////////0701
 			   public ArrayList<MovieVO> findReservationInfo(String loginId) {
 			      connect();
 			      ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 			      try {
-			         String sql = "select r.resNum resNum, m.movieTitle movieTitle, s.screenDate screenDate, s.screenTime screenTime, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ?";
+			         String sql = "select r.resNum resNum, m.movieTitle movieTitle, to_char(s.screenDate,'yyyy/mm/dd hh24\"시\"') screenDate, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ?";
 			         pstmt = conn.prepareStatement(sql);
 			            pstmt.setString(1, loginId);
 			         rs = pstmt.executeQuery();
 			         while(rs.next()) {
-			            MovieVO mv = new MovieVO(rs.getInt("resNum"),rs.getString("movieTitle"),rs.getString("screenDate"),rs.getString("screenTime"),rs.getString("resSeat"));
+			            MovieVO mv = new MovieVO(rs.getInt("resNum"),rs.getString("movieTitle"),rs.getString("screenDate"),rs.getString("resSeat"));
 			            list.add(mv);
 			         }
 			      } catch (SQLException e) {
@@ -216,7 +216,7 @@ public class ReservationDAO {
 			      }
 			      return list;
 			   }
-			   
+////////////////////////////////////////////////////////////////////////////////////////////////////0701		   
 			   public boolean updateTotalViewer(Map<String, String> movieTmp) {
 			      connect();
 			      try {

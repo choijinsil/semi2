@@ -21,7 +21,7 @@ public class ListView extends JFrame{
    public ListView() {
       
       Object [][]rowData = new Object[0][5];
-      String []columnTitle = {"예매번호","영화제목","상영일자","상영시간","예매좌석"};
+      String []columnTitle = {"예매번호","영화제목","상영일자","예매좌석"};
       dtm = new DefaultTableModel(rowData, columnTitle);
       table = new JTable(dtm);
       scroll_table = new JScrollPane(table);
@@ -46,7 +46,7 @@ public class ListView extends JFrame{
       dtm.setRowCount(0);
       for (int i = 0; i < list.size(); i++) {
          MovieVO mv = list.get(i);
-         Object[] rowData = {mv.getResNum(),mv.getMovieTitle(),mv.getScreenDate(),mv.getScreenTime(),mv.getResSeat()};
+         Object[] rowData = {mv.getResNum(),mv.getMovieTitle(),mv.getScreenDate(),mv.getResSeat()};
          dtm.addRow(rowData);
       }
    }
