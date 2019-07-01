@@ -27,10 +27,6 @@ public class MainController {
 	
 	Map<String, String> movieTmp;
 
-	
-	
-
-	
 	public MainController() {
 
 	//map

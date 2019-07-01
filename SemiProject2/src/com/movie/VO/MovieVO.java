@@ -3,7 +3,9 @@ package com.movie.VO;
 public class MovieVO {
 	int quantity;
 	int resNum;
+	int movieNum; // 영화번호
 	String movieTitle;
+	
 	String screenDate;
 	String screenTime;
 	String seatName;
@@ -32,10 +34,11 @@ public class MovieVO {
 		this.movieTitle= movieTitle;
 	}
 	
-	public MovieVO(int quantity, int resNum, String movieTitle, String screenDate, String screenTime, String seatName) {
+	public MovieVO(int quantity, int resNum, int movieNum, String movieTitle, String screenDate, String screenTime, String seatName) {
 		super();
 		this.quantity = quantity;
 		this.resNum = resNum;
+		this.movieNum = movieNum;
 		this.movieTitle = movieTitle;
 		this.screenDate = screenDate;
 		this.screenTime = screenTime;
@@ -50,16 +53,17 @@ public class MovieVO {
 	this.scheduleNum = scheduleNum;
 	this.resSeat = resSeat;
 	}
-
-//////////////////////////////////////////////////////////////0701 수정
-	public MovieVO(int resNum, String movieTitle, String screenDate, String resSeat) {
+	
+	public MovieVO(int resNum,String movieTitle, String screenDate, String screenTime, String resSeat) {
 	super();
 	this.resNum = resNum;
 	this.movieTitle = movieTitle;
 	this.screenDate = screenDate;
+	this.screenTime = screenTime;
 	this.resSeat = resSeat;
 	}
-////////////////////////////////////////////////////////////// 0701 수정
+
+//////////////////////////////////////////////////////////////
 	
 	
 	public int getQuantity() {
@@ -73,6 +77,13 @@ public class MovieVO {
 	}
 	public void setResNum(int resNum) {
 		this.resNum = resNum;
+	}
+	
+	public int getMovieNum() {
+		return movieNum;
+	}
+	public void setMovieNum(int movieNum) {
+		this.movieNum = movieNum;
 	}
 	public String getMovieTitle() {
 		return movieTitle;
