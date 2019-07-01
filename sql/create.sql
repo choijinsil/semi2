@@ -11,8 +11,8 @@ CREATE TABLE Movie (
 	totalViewer NUMBER NOT NULL, /* 관객수 */
 	director VARCHAR2(20) NOT NULL, /* 감독 */
 	mainActor VARCHAR2(20) NOT NULL, /* 주연 */
-	openingDate DATE NOT NULL /* 개봉일 */
-	synopsis clob /* 줄거리 */
+	openingDate DATE NOT NULL, /* 개봉일 */
+	synopsis clob, /* 줄거리 */
 	movieImage blob /* 이미지 */
 );
 
