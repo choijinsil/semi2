@@ -4,6 +4,7 @@ package com.movie.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.movie.view.AdminView;
 import com.movie.view.ChoiceView;
 import com.movie.view.HomeView;
 import com.movie.view.ListView;
@@ -24,6 +25,12 @@ public class MainController {
 	HomeController hc;
 	PaymentController pc;
 	SeatController sc;
+	
+	
+	//Admin
+	AdminView av;
+	
+	AdminController ac;
 	
 	Map<String, String> movieTmp;
 
@@ -53,11 +60,17 @@ public class MainController {
 	sUv = new SignUpView();
 	lv = new ListView();
 	
+	//Admin
+	
+	av = new AdminView();
+	ac = new AdminController(this);
+	
 	// controller
 	cc = new ChoiceController(this);
 	pc = new PaymentController(this);
 	sc = new SeatController(this);
 	hc = new HomeController(this);
+	
 	
 
 	

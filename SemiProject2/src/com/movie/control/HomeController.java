@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.movie.VO.MemberVO;
 import com.movie.dao.ReservationDAO;
+import com.movie.view.AdminView;
 import com.movie.view.ChoiceView;
 import com.movie.view.HomeView;
 import com.movie.view.ListView;
@@ -20,6 +21,8 @@ public class HomeController implements ActionListener,FocusListener {
 	SignUpView sUv;
 	Map<String, String> movieTmp;
 	ListView lv;
+	
+	AdminView av;
 	
 	private boolean sign = false, idck;
 	String name;
@@ -34,6 +37,8 @@ public class HomeController implements ActionListener,FocusListener {
 		this.sUv = main.sUv;
 		this.movieTmp = main.movieTmp;
 		this.lv = main.lv;
+		
+		this.av = main.av;
 		
 		String[][] str = new ReservationDAO().movieSearch();
 		for (int i = 0; i < str.length; i++) {
@@ -112,10 +117,15 @@ public class HomeController implements ActionListener,FocusListener {
 			if(vo==null) {
 				hv.showMsg("아이디 혹은 비밀번호를 확인해주세요");
 			}else {
+				hv.idTextField.setText("아이디");
+				hv.pwdTextField.setText("비밀번호");
+				if(vo.getMemberNum()==1) {
+					hv.setVisible(false);
+					av.setVisible(true);
+					return;
+				}
 				hv.signIn(vo.getName());
-				System.out.println(movieTmp.get("id"));
 				movieTmp.put("id", vo.getId());
-				System.out.println(movieTmp.get("id"));
 				movieTmp.put("memberNum", (vo.getMemberNum()+""));
 				sign = true;
 			}
