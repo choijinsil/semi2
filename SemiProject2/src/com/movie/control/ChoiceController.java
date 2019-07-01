@@ -51,42 +51,41 @@ public class ChoiceController implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JComboBox<String> cb = (JComboBox<String>) e.getSource();
-				cv.selMovie = cb.getSelectedItem().toString();
-//				System.out.println("선택했습니다 작동합니다");
-				cv.selMovieIdx = cb.getSelectedIndex();
-				//System.out.println(selMovieIdx);
+//				JComboBox<String> cb = (JComboBox<String>) e.getSource();
+				cv.selMovie = cv.cbMovie.getSelectedItem().toString();
+				System.out.println("선택했습니다 작동합니다");
+				cv.selMovieIdx = cv.cbMovie.getSelectedIndex();
+				System.out.println(cv.selMovieIdx);
 //				findScreenDate(selMovie);
-				// JOptionPane.showConfirmDialog(null, "선택한 영화는" + selMovie + "입니다. 맞습니까?");
 				cv.displayScreenDate(rDao.findScreenDate(cv.selMovie));
 //				System.out.println(cv.selMovie);
 				cv.imgLabel.setIcon(new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"));
 			}
 		});
 		
-		cv.dbDate.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-					try
-					{
-						JComboBox<String> cb = (JComboBox<String>) e.getSource();
-						System.out.println("스트링으로 받지? " + cb.getSelectedItem().toString());
-						cv.selDate = cb.getSelectedItem().toString();
-//						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
-						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd hh24");
-						cv.date = transFormat.parse(cv.selDate);
-						System.out.println("데이트로 받지? " + cv.date);
-						rDao.findScheduleNum(cv.selMovie, cv.date);
-					} catch (ParseException e1)
-					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-			}
-		});
+//		cv.dbDate.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//					try
+//					{
+////						JComboBox<String> cb = (JComboBox<String>) e.getSource();
+//						System.out.println("스트링으로 받지? " + cb.getSelectedItem().toString());
+//						cv.selDate = cb.getSelectedItem().toString();
+////						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
+//						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd hh24");
+//						cv.date = transFormat.parse(cv.selDate);
+//						System.out.println("데이트로 받지? " + cv.date);
+//						rDao.findScheduleNum(cv.selMovie, cv.date);
+//					} catch (ParseException e1)
+//					{
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//				
+//			}
+//		});
 
 		}
 
@@ -106,5 +105,4 @@ public class ChoiceController implements ActionListener {
 	}
 
 }
-
 		
