@@ -20,7 +20,7 @@ public class ListView extends JFrame{
    
    public ListView() {
       
-      Object [][]rowData = new Object[0][5];
+      Object [][]rowData = new Object[0][4];
       String []columnTitle = {"예매번호","영화제목","상영일자","예매좌석"};
       dtm = new DefaultTableModel(rowData, columnTitle);
       table = new JTable(dtm);
