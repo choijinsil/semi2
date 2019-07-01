@@ -38,10 +38,10 @@ CREATE TABLE Schedule (
 /* 예매 */
 CREATE TABLE Reservation (
 	resNum NUMBER NOT NULL, /* 예매번호 */
-	seatNum NUMBER NOT NULL, /* 좌석번호 */
 	scheduleNum NUMBER NOT NULL, /* 상영일정번호 */
 	memberNum NUMBER NOT NULL, /* 회원번호 */
-	quantity NUMBER NOT NULL /* 수량 */
+	quantity NUMBER NOT NULL, /* 수량 */
+	resSeat varchar2(50) NOT NULL /* 좌석번호 */
 );
 
 create sequence memberSeq
