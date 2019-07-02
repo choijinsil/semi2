@@ -1,0 +1,9 @@
+﻿1. sql 문서의 5번 blobclob을 실행한다
+
+2. imgcontrol 을 실행해서 semi / semiproject2 / src / img 안의
+알라딘, 기생충, 토이스토리 순으로 저장한다
+
+3. txtcontrol을 실행해서 semi2 / synopsis 안의
+알라딘, 기생충, 토이스토리 순으로 실행한다
+
+4. sql 6번 문서를 실행한다
