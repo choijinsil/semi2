@@ -1,5 +1,7 @@
 package com.movie.VO;
 
+import javax.swing.ImageIcon;
+
 public class MovieVO {
 	int quantity;
 	int resNum;
@@ -7,9 +9,18 @@ public class MovieVO {
 	String movieTitle;
 	
 	String screenDate;
-	String screenTime;
 	String seatName;
 	private int scheduleNum;
+	private ImageIcon movieImage;
+	
+	public ImageIcon getMovieImage() {
+		return movieImage;
+	}
+
+	public void setMovieImage(ImageIcon movieImage) {
+		this.movieImage = movieImage;
+	}
+
 	public int getScheduleNum() {
 		return scheduleNum;
 	}
@@ -34,14 +45,13 @@ public class MovieVO {
 		this.movieTitle= movieTitle;
 	}
 	
-	public MovieVO(int quantity, int resNum, int movieNum, String movieTitle, String screenDate, String screenTime, String seatName) {
+	public MovieVO(int quantity, int resNum, int movieNum, String movieTitle, String screenDate, String seatName) {
 		super();
 		this.quantity = quantity;
 		this.resNum = resNum;
 		this.movieNum = movieNum;
 		this.movieTitle = movieTitle;
 		this.screenDate = screenDate;
-		this.screenTime = screenTime;
 		this.seatName = seatName;
 	}
 	
@@ -54,12 +64,11 @@ public class MovieVO {
 	this.resSeat = resSeat;
 	}
 	
-	public MovieVO(int resNum,String movieTitle, String screenDate, String screenTime, String resSeat) {
+	public MovieVO(int resNum,String movieTitle, String screenDate, String resSeat) {
 	super();
 	this.resNum = resNum;
 	this.movieTitle = movieTitle;
 	this.screenDate = screenDate;
-	this.screenTime = screenTime;
 	this.resSeat = resSeat;
 	}
 
@@ -97,12 +106,7 @@ public class MovieVO {
 	public void setScreenDate(String screenDate) {
 		this.screenDate = screenDate;
 	}
-	public String getScreenTime() {
-		return screenTime;
-	}
-	public void setScreenTime(String screenTime) {
-		this.screenTime = screenTime;
-	}
+	
 	public String getSeatName() {
 		return seatName;
 	}

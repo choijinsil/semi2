@@ -36,21 +36,7 @@ public class AdminView extends JFrame{
 			, laMovTitle, laMovDir, laMovAct, laMovOpen, laMovImage, laMovSyn;
 	
 	public AdminView() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}// chooser UI 변경
+//		
 		
 		btMovie = new JButton("영화");
 		btMovie.setBounds(30,30,250,50);
@@ -240,7 +226,7 @@ public class AdminView extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		movPanel.setVisible(true);
 		schePanel.setVisible(false);
-//		setVisible(true);
+		setVisible(true);
 	}
 	
 	
@@ -283,6 +269,21 @@ public class AdminView extends JFrame{
 		return "";
 	}
 	public String chooseSynopsis() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}// chooser UI 변경
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT 파일 읽기", "txt");
 		chooser.setFileFilter(filter);
