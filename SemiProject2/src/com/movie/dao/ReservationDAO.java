@@ -31,6 +31,7 @@ public class ReservationDAO {
 		
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 		connect();
+		
 		try {
 			
 			String sql = "select MOVIETITLE, MOVIENUM from movie";
@@ -54,23 +55,52 @@ public class ReservationDAO {
 	}
 	
 	
+//	//영화 시간 - 용진
+//	public ArrayList<MovieVO> findScreenDate(String selMovie) { 
+//		
+//		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
+//		connect();
+//		try {
+//			// to_char(screenDate,'yyyy/mm/dd hh24')
+//			
+//			String sql = "select screenDate " + "from schedule " + "natural join movie " + 
+//					"where movieTitle = '" + selMovie + "'";
+//			pstmt = conn.prepareStatement(sql);
+//			rs = pstmt.executeQuery(); 
+//			while (rs.next()) {
+//				MovieVO vo = new MovieVO();
+//				vo.setScreenDate(rs.getString("screenDate"));
+//				System.out.println(vo.getScreenDate());
+//				list.add(vo);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//		return list;
+//	}
 	//영화 시간
 	public ArrayList<MovieVO> findScreenDate(String selMovie) { 
 		
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 		connect();
 		try {
+			// to_char(screenDate,'yyyy/mm/dd hh24')
 			
-			String sql = "select screenDate " + "from schedule " + "natural join movie " + 
-					"where movieTitle = '" + selMovie + "'";
+			String sql = "select to_char(screenDate, 'yyyy/MM/dd hh24') as screenDate from schedule natural join movie where movieTitle = ?";
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(); 
+			pstmt.setString(1, selMovie);
+			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				MovieVO vo = new MovieVO();
 				vo.setScreenDate(rs.getString("screenDate"));
+//				System.out.println("screenDate출력값>>>"+vo.getScreenDate());
 				list.add(vo);
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -80,20 +110,33 @@ public class ReservationDAO {
 	}
 	
 	//스캐쥴 넘버 조회
-		public ArrayList<MovieVO> findScheduleNum(String selMovie, Date selDate) { 
+		public ArrayList<MovieVO> findScheduleNum(String selMovie, String selDate) { 
 			
 			ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 			connect();
+			
 			try {
 				
-				String sql = "select ScheduleNum " + "from schedule " + 
-						"where movieTitle = '" + selMovie + "' and screenDate = '" + selDate +"'"  ;
+				String sql = "select ScheduleNum num from schedule  natural join movie " + 
+						"where movieTitle = ? and screenDate = to_date (?,'yyyy/mm/dd hh24')";
+			
+				
+//				java.sql.Date date=	new java.sql.Date(selDate.getTime()); 
+				
+//				System.out.println("sql의 Date형식"+date);
+				
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, selMovie); 
+//				pstmt.setDate(2, date);
+				pstmt.setString(2, selDate);
 				rs = pstmt.executeQuery(); 
+				
 				while (rs.next()) {
 					MovieVO vo = new MovieVO();
-					vo.setScreenDate(rs.getString("scheduleNum"));
+//					vo.setScreenDate(rs.getString("scheduleNum"));
+					vo.setScheduleNum(rs.getInt("num"));
 					list.add(vo);
+					System.out.println("scheduleNum>>"+vo.getScheduleNum());
 				}
 
 			} catch (SQLException e) {
@@ -104,6 +147,30 @@ public class ReservationDAO {
 			return list;
 		}
 
+//		//스캐쥴 넘버 조회 - 용진
+//				public ArrayList<MovieVO> findScheduleNum(String selMovie, Date selDate) { 
+//					
+//					ArrayList<MovieVO> list = new ArrayList<MovieVO>();
+//					connect();
+//					try {
+//						
+//						String sql = "select ScheduleNum " + "from schedule " + 
+//								"where movieTitle = '" + selMovie + "' and screenDate = '" + selDate +"'"  ;
+//						pstmt = conn.prepareStatement(sql);
+//						rs = pstmt.executeQuery(); 
+//						while (rs.next()) {
+//							MovieVO vo = new MovieVO();
+//							vo.setScreenDate(rs.getString("scheduleNum"));
+//							list.add(vo);
+//						}
+//
+//					} catch (SQLException e) {
+//						e.printStackTrace();
+//					} finally {
+//						disconnect();
+//					}
+//					return list;
+//				}
 	public ReservationDAO() {
 		try {
 			pro = new Properties();
@@ -337,6 +404,7 @@ public class ReservationDAO {
 	private void connect() {
 		try {
 			conn = DriverManager.getConnection(pro.getProperty("url"), pro);
+//			System.out.println("conn 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

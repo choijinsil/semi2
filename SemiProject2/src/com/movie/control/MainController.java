@@ -61,7 +61,6 @@ public class MainController {
 	lv = new ListView();
 	
 	//Admin
-	
 	av = new AdminView();
 	ac = new AdminController(this);
 	
@@ -70,10 +69,7 @@ public class MainController {
 	pc = new PaymentController(this);
 	sc = new SeatController(this);
 	hc = new HomeController(this);
-	
-	
 
-	
 	}
 	
 	public static void main(String[] args) {

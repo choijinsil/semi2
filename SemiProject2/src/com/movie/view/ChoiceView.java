@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -141,74 +142,10 @@ public class ChoiceView extends JFrame {
 		
 		
 		setVisible(true);
+		setSize(800, 800);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
-
-//	// 한자리 숫자 앞에 + 0 예) 7일 -> 07일
-//	private String addZeroString(int k) {
-//		String value = Integer.toString(k);
-//		if (value.length() == 1) {
-//			value = "0" + value;
-//		}
-//		return value;
-//	}
-
-//	public void cal() {
-//		Calendar calendar = Calendar.getInstance(); // 현재 날짜/시간 등의 각종 정보 얻기
-//		yearArray = new ArrayList<String>();
-//		monthArray = new ArrayList<String>();
-//		dayArray = new ArrayList<String>();
-//
-//		// 현재 날짜
-//		int year = calendar.get(Calendar.YEAR);
-//		int month = calendar.get(Calendar.MONTH) + 1;
-//		int today = calendar.get(Calendar.DAY_OF_MONTH);
-//
-//		// 년도
-//		for (int i = year; i <= year; i++) {
-//			yearArray.add(String.valueOf(i));
-//		}
-//		cbYear = new JComboBox<String>(yearArray.toArray(new String[yearArray.size()]));
-//		cbYear.setSelectedItem(String.valueOf(year));
-//
-//		// 월
-//		for (int i = 7; i <= 7; i++) {
-//			monthArray.add(addZeroString(i));
-//		}
-//		cbMonth = new JComboBox<String>(monthArray.toArray(new String[monthArray.size()]));
-//
-//		String mcom = month >= 10 ? String.valueOf(month) : "0" + month;
-//		cbMonth.setSelectedItem(mcom);
-//
-//		// 일
-//		int m = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 이번달 최대 일자 구하기
-//		for (int i = 1; i <= m; i++) {
-//			dayArray.add(addZeroString(i));
-//		}
-//		cbDay = new JComboBox<String>(dayArray.toArray(new String[dayArray.size()]));
-//		cbDay.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				JComboBox<String> cb = (JComboBox<String>) e.getSource();
-//
-//				try {
-//					selDayIdx = cb.getSelectedItem().toString();
-//					transFormat = new SimpleDateFormat("yyyyMMdd");
-//					date = transFormat.parse("201907" + selDayIdx);
-//				} catch (ParseException e1) {
-//					e1.printStackTrace();
-//				}
-//				// 출력시 꼭 아래 형식으로 출력할것 
-//				System.out.println(transFormat.format(date));
-//			}
-//		});
-
-//		String dcom = today >= 10 ? String.valueOf(today) : "0" + today;
-//		cbDay.setSelectedItem(dcom);
-//	}
-
 
 	public void getMovieTitle() {
 		System.out.println(cbMovie.getSelectedIndex());
@@ -216,8 +153,9 @@ public class ChoiceView extends JFrame {
 
 
 	public void displayTable(ArrayList<MovieVO> list) {
-
-		System.out.println("list.size()>>" + list.size());
+		//System.out.println("list.size()>>" + list.size());
+		cbMovie.removeAllItems();
+		cbMovie.addItem("<<<영화>>>");
 		for (int i = 0; i < list.size(); i++) {
 
 			cbMovie.addItem(list.get(i).getMovieTitle());
@@ -226,12 +164,22 @@ public class ChoiceView extends JFrame {
 	}// displayTable
 	
 	public void displayScreenDate(ArrayList<MovieVO> list) {
-		dbDate.removeAllItems();
-		System.out.println("list.size()>>" + list.size());
+		//setModel(ComboBoxModel<E> aModel)
+		//DefaultComboBoxModel
+		
+		
+//		dbDate.removeAllItems();
+////		dbDate.addItem("<<<날짜>>>");
+//		System.out.println("list.size()>>" + list.size());
+		String[] objDate = new String[list.size()];
 		for (int i = 0; i < list.size(); i++) {
-			dbDate.addItem(list.get(i).getScreenDate());
+			//dbDate.addItem(list.get(i).getScreenDate());
+			objDate[i] = list.get(i).getScreenDate();
 		}
 
+		DefaultComboBoxModel model = new DefaultComboBoxModel(objDate);
+		dbDate.setModel(model);
+		
 	}// displayScreenDate
 
 

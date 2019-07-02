@@ -3,8 +3,12 @@ package com.movie.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -18,18 +22,15 @@ import com.movie.view.SeatView;
 
 import sun.applet.Main;
 
-
 public class ChoiceController implements ActionListener {
 
 	ChoiceView cv;
 	ReservationDAO rDao;
 	HomeView hv;
 	SeatView sv;
-	
 
 	public ChoiceController() {
 	}
-	
 
 	public ChoiceController(MainController mv) {
 //		ChoiceView cv;
@@ -39,70 +40,87 @@ public class ChoiceController implements ActionListener {
 		hv = mv.hv;
 		sv = mv.sv;
 		rDao = new ReservationDAO();
-		
+
 		cv.displayTable(rDao.findMovieTitle());
-		cv.displayScreenDate(rDao.findScreenDate("알라딘"));
-		
+//		cv.displayScreenDate(rDao.findScreenDate(cv.cbMovie.getSelectedItem().toString()));
+
 //		System.out.println(rDao.findMovieTitle().get(0).getMovieTitle());// 테스트
 //		System.out.println("값 잘 가져오니 테스트" + cv.selMovie);
 		cv.btNext.addActionListener(this);
 		cv.btPrev.addActionListener(this);
-		cv.cbMovie.addActionListener(new ActionListener() {
+
+		cv.cbMovie.addActionListener(new ActionListener() { // 영화제목 선택
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(">>>왼쪽콤보");
 //				JComboBox<String> cb = (JComboBox<String>) e.getSource();
-				cv.selMovie = cv.cbMovie.getSelectedItem().toString();
-				System.out.println("선택했습니다 작동합니다");
-				cv.selMovieIdx = cv.cbMovie.getSelectedIndex();
-				System.out.println(cv.selMovieIdx);
+				
+				cv.selMovie = cv.cbMovie.getSelectedItem().toString(); // 콤보박스값을 selMovie저장
+//				System.out.println("선택했습니다 작동합니다");
+//				cv.selMovieIdx = cv.cbMovie.getSelectedIndex();
+//				System.out.println(cv.selMovieIdx);
 //				findScreenDate(selMovie);
 				cv.displayScreenDate(rDao.findScreenDate(cv.selMovie));
+				System.out.println("rDao.findScreenDate(cv.selMovie)>>"+rDao.findScreenDate(cv.selMovie));
 //				System.out.println(cv.selMovie);
-				cv.imgLabel.setIcon(new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"));
+				cv.imgLabel
+						.setIcon(new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"));
 			}
 		});
-		
-//		cv.dbDate.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				
-//					try
-//					{
-////						JComboBox<String> cb = (JComboBox<String>) e.getSource();
-//						System.out.println("스트링으로 받지? " + cb.getSelectedItem().toString());
-//						cv.selDate = cb.getSelectedItem().toString();
-////						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
-//						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd hh24");
-//						cv.date = transFormat.parse(cv.selDate);
-//						System.out.println("데이트로 받지? " + cv.date);
-//						rDao.findScheduleNum(cv.selMovie, cv.date);
-//					} catch (ParseException e1)
-//					{
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//				
-//			}
-//		});
 
-		}
+		cv.dbDate.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  System.out.println("================================");
+                  System.out.println(">>>오른쪽콤보");
+				try {
+
+//					System.out.println("스트링으로 받지? >>>" + cv.dbDate.getSelectedItem().toString()+"<<<");
+					System.out.println("cv>>"+cv);
+					System.out.println("dbDate>>"+cv.dbDate);
+					System.out.println("Item>>"+cv.dbDate.getSelectedItem());
+					cv.selDate = cv.dbDate.getSelectedItem().toString(); // 현재 스트링
+					
+					Date trDate = new SimpleDateFormat("yyyy/MM/dd HH").parse(cv.selDate);
+//					System.out.println("trDate>>>"+ trDate);
+					cv.date = trDate; // String을 Date형식에 넣기
+					
+//					System.out.println("데이트로 받지? " + cv.date);
+//					System.out.println("cv.selMovie>>"+cv.selMovie);
+//					System.out.println("cv.selDate>>>"+cv.selDate);
+					
+					ArrayList<MovieVO> arr= rDao.findScheduleNum(cv.selMovie, cv.selDate);
+//					System.out.println(arr.size());
+					
+					for (int i = 0; i < arr.size(); i++) {
+						System.out.println("선택된 영화의 스케쥴 넘을 가져올거: ");
+						System.out.println(arr.get(i).getScheduleNum());
+					}
+					
+//					rDao.findScheduleNum(cv.selMovie, cv.selDate);
+//					System.out.println("이 시간값으로 스케쥴 넘버 넘김>>" + cv.date);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
-		if(ob == cv.btNext) {
+		if (ob == cv.btNext) {
 			cv.setVisible(false);
 			sv.setVisible(true);
-		}
-		else if(ob == cv.btPrev) {
+		} else if (ob == cv.btPrev) {
 			cv.setVisible(false);
 			hv.setVisible(true);
 		}
-		
+
 	}
 
 }
-		
