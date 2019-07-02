@@ -54,12 +54,11 @@ public class MovieVO {
 	this.resSeat = resSeat;
 	}
 	
-	public MovieVO(int resNum,String movieTitle, String screenDate, String screenTime, String resSeat) {
+	public MovieVO(int resNum, String movieTitle, String screenDate, String resSeat) {
 	super();
 	this.resNum = resNum;
 	this.movieTitle = movieTitle;
 	this.screenDate = screenDate;
-	this.screenTime = screenTime;
 	this.resSeat = resSeat;
 	}
 
