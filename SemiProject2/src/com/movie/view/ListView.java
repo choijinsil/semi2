@@ -1,5 +1,6 @@
 package com.movie.view;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,14 +20,19 @@ public class ListView extends JFrame{
    public JButton rescancelButton, backButton;
    
    public ListView() {
-      
+	  Font f = new Font("Dialog",Font.BOLD,25);
       Object [][]rowData = new Object[0][4];
       String []columnTitle = {"예매번호","영화제목","상영일자","예매좌석"};
       dtm = new DefaultTableModel(rowData, columnTitle);
       table = new JTable(dtm);
+      table.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
+      table.setRowHeight(50);
+      table.setFont(f);
       scroll_table = new JScrollPane(table);
       rescancelButton = new JButton("예매 취소");
+      rescancelButton.setFont(f);
       backButton = new JButton("뒤로가기");
+      backButton.setFont(f);
       
       scroll_table.setBounds(30,30, 1500, 1000);
       rescancelButton.setBounds(1600, 30, 250, 50);
@@ -58,4 +64,7 @@ public class ListView extends JFrame{
    public void showMsg(String msg) {
       JOptionPane.showMessageDialog(this, msg);
    }
+//   public static void main(String[] args) {
+//	new ListView();
+//   }
 }

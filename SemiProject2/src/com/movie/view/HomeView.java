@@ -83,12 +83,16 @@ public class HomeView extends JFrame {
 		//member
 		idLabel = new JLabel();
 			idLabel.setBounds(30, 130, 300, 40);
+			idLabel.setFont(f);
 		resButton = new JButton("예매하기");
 			resButton.setBounds(0, 350, 500, 80);
+			resButton.setFont(f);
 		readResButton = new JButton("예매 조회");
 			readResButton.setBounds(0, 510, 500, 80);
+			readResButton.setFont(f);
 		signOutButton = new JButton("로그아웃");
 			signOutButton.setBounds(0, 710,500,80);
+			signOutButton.setFont(f);
 		
 		memberPanel = new JPanel(null);
 			memberPanel.add(idLabel);
@@ -119,6 +123,7 @@ public class HomeView extends JFrame {
 		loginPanel.setVisible(true);
 		
 		loginPanel.repaint();
+		signInButton.requestFocus();
 		setVisible(true);
 	}
 	

@@ -19,7 +19,7 @@ insert into MEMBERSHIP values(1,'관리자','rhksfl1!','관리자','010-0000-000
 -- schedule
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 13','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 15','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 13','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 15','yyyy/mm/dd hh24'));
@@ -53,5 +53,3 @@ insert into RESERVATION values (100015,13,10001,3,'A2,A3,A5');
 insert into RESERVATION values (100016,25,10001,1,'A1');
 insert into RESERVATION values (100022,2,10002,2,'A2,A3');
 insert into RESERVATION values (100024,17,10002,2,'A2,A3');
-
-truncate table reservation;
