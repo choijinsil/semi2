@@ -13,7 +13,8 @@ insert into MEMBERSHIP values(memberSeq.nextval, 'hana', 'a1234', '유하나', '
 insert into MEMBERSHIP values(memberSeq.nextval, 'jongsoo', 'b1234', '박종수', '010-2322-1234',4);
 insert into MEMBERSHIP values(memberSeq.nextval, 'yongjin', 'c1234', '김용진', '010-2322-5678',0);
 insert into MEMBERSHIP values(memberSeq.nextval, 'jinsil', 'd1234', '최진실', '010-2322-1345',0);
-insert into MEMBERSHIP values(memberSeq.nextval, 'munha', 'e1234', '박문하', '010-2322-6512',0);
+insert into MEMBERSHIP values(memberSeq.nextval, 'moonha', 'e1234', '박문하', '010-2322-6512',0);
+insert into MEMBERSHIP values(1,'관리자','rhksfl1!','관리자','010-0000-0000',0);
 
 -- schedule
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
