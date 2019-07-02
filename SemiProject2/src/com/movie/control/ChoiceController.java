@@ -89,7 +89,7 @@ public class ChoiceController implements ActionListener {
 
 					Date trDate = new SimpleDateFormat("yyyy/MM/dd HH").parse(cv.selDate);
 //					System.out.println("trDate>>>"+ trDate);
-					cv.date = trDate; // String을 Date형식에 넣기
+					cv.date = trDate; // String을 Date형식에 넣기 
 
 //					System.out.println("데이트로 받지? " + cv.date);
 //					System.out.println("cv.selMovie>>"+cv.selMovie);

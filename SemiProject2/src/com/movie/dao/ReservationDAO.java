@@ -123,7 +123,7 @@ public class ReservationDAO {
 				
 				String sql = "select ScheduleNum num from schedule  natural join movie " + 
 						"where movieTitle = ? and screenDate = to_date (?,'yyyy/mm/dd hh24')";
-			
+			 
 				
 //				java.sql.Date date=	new java.sql.Date(selDate.getTime()); 		
 //				System.out.println("sql의 Date형식"+date);

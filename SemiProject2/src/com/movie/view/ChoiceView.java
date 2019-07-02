@@ -144,7 +144,7 @@ public class ChoiceView extends JFrame {
 		setVisible(true);
 		setSize(800, 800);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+ 
 	}
 
 	public void getMovieTitle() {
