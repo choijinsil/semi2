@@ -1,6 +1,7 @@
 package com.movie.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Vector;
 
@@ -20,25 +21,34 @@ public class SeatView extends JFrame{
 	public Vector<JButton> jb;
 	
 	public SeatView() {
+		Font f = new Font("Dialog",Font.BOLD,40);
 		screen = new JButton("SCREEN");
+		screen.setFont(f);
 		screen.setEnabled(false);
 		
 		seat1 = new JButton("A1");
 		seat1.setBackground(Color.green);
+		seat1.setFont(f);
 		seat2 = new JButton("A2");
 		seat2.setBackground(Color.green);
+		seat2.setFont(f);
 		seat3 = new JButton("A3");
 		seat3.setBackground(Color.green);
+		seat3.setFont(f);
 		seat4 = new JButton("A4");
 		seat4.setBackground(Color.green);
+		seat4.setFont(f);
 		seat5 = new JButton("A5");
 		seat5.setBackground(Color.green);
+		seat5.setFont(f);
 		
 		btNext = new JButton("다음");
 		btPrev = new JButton("이전");
 		
 		btNext.setBounds(1690, 876, 200, 80);
+		btNext.setFont(f);
 		btPrev.setBounds(30, 876, 200, 80);
+		btPrev.setFont(f);
 		
 		seatP1 = new JPanel();
 		seatP1.setLayout(new GridLayout(1,3));
@@ -100,6 +110,4 @@ public class SeatView extends JFrame{
 	public void showMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}// showMsg
-	
-	
 }

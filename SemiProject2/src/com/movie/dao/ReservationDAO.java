@@ -1,8 +1,10 @@
 package com.movie.dao;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +15,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
+
+import javax.swing.ImageIcon;
 
 import com.movie.VO.MemberVO;
 import com.movie.VO.MovieVO;
@@ -110,7 +114,7 @@ public class ReservationDAO {
 	}
 	
 	//스캐쥴 넘버 조회
-		public ArrayList<MovieVO> findScheduleNum(String selMovie, String selDate) { 
+		public int findScheduleNum(String selMovie, String selDate) { 
 			
 			ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 			connect();
@@ -121,8 +125,7 @@ public class ReservationDAO {
 						"where movieTitle = ? and screenDate = to_date (?,'yyyy/mm/dd hh24')";
 			
 				
-//				java.sql.Date date=	new java.sql.Date(selDate.getTime()); 
-				
+//				java.sql.Date date=	new java.sql.Date(selDate.getTime()); 		
 //				System.out.println("sql의 Date형식"+date);
 				
 				pstmt = conn.prepareStatement(sql);
@@ -135,8 +138,9 @@ public class ReservationDAO {
 					MovieVO vo = new MovieVO();
 //					vo.setScreenDate(rs.getString("scheduleNum"));
 					vo.setScheduleNum(rs.getInt("num"));
-					list.add(vo);
-					System.out.println("scheduleNum>>"+vo.getScheduleNum());
+//					list.add(vo);
+					return vo.getScheduleNum();
+//					System.out.println("scheduleNum>>"+vo.getScheduleNum());
 				}
 
 			} catch (SQLException e) {
@@ -144,7 +148,7 @@ public class ReservationDAO {
 			} finally {
 				disconnect();
 			}
-			return list;
+			return 0;
 		}
 
 //		//스캐쥴 넘버 조회 - 용진
@@ -184,10 +188,42 @@ public class ReservationDAO {
 			e.printStackTrace();
 		}
 	}
-	public String[][] movieSearch() {
-		String[][] str = {{"al","알라딘"},{"toy","토이스토리"},{"bug","기생충"}};
+	public ArrayList<MovieVO> movieSearch() {
+		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
+		connect();
+		try {
+			String sql = "select m.movienum num, m.movietitle title, m.movieimage image from movie m"
+					+ " where m.movienum = any (select s.movienum from schedule s where s.screendate > sysdate)"
+					+ " order by m.totalviewer desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MovieVO vo = new MovieVO();
+				vo.setMovieNum(rs.getInt("num"));
+				vo.setMovieTitle(rs.getString("title"));
+					ByteArrayOutputStream bout = new ByteArrayOutputStream();
+					InputStream in = rs.getBinaryStream("image");
+					byte[] buf = new byte[1024];
+					int read = 0;
+					while((read=in.read(buf,0,buf.length))!=-1) {
+						bout.write(buf, 0, read);
+					}
+				vo.setMovieImage(new ImageIcon(bout.toByteArray()));
+					in.close();
+					bout.close();
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+		} finally {
+			disconnect();
+		}
+//		String[][] str = {{"al","알라딘"},{"toy","토이스토리"},{"bug","기생충"}};
 
-		return str; 
+		return list; 
 	}
 	public MemberVO loginDAO(String id, String pwd) {
 		connect();
@@ -260,7 +296,7 @@ public class ReservationDAO {
 		            pstmt.setString(2, password);
 		         rs = pstmt.executeQuery();
 		         rs.next();
-		      return rs.getInt("count(*)");
+		      return rs.getInt("count(*)"); 
 		      } catch (SQLException e) {
 		         e.printStackTrace();
 		      } finally {
@@ -323,13 +359,13 @@ public class ReservationDAO {
 			      connect();
 			      ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 			      try {
-			         String sql = "select r.resNum resNum, m.movieTitle movieTitle, s.screenDate screenDate, s.screenTime screenTime, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ?";
-			         pstmt = conn.prepareStatement(sql);
-			            pstmt.setString(1, loginId);
-			         rs = pstmt.executeQuery();
-			         while(rs.next()) {
-			            MovieVO mv = new MovieVO(rs.getInt("resNum"), rs.getString("movieTitle"),rs.getString("screenDate"),rs.getString("screenTime"),rs.getString("resSeat"));
-			            list.add(mv);
+				         String sql = "select r.resNum resNum, m.movieTitle movieTitle, to_char(s.screenDate,'yyyy/mm/dd hh24\"시\"') screenDate, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ?";
+				         pstmt = conn.prepareStatement(sql);
+				            pstmt.setString(1, loginId);
+				         rs = pstmt.executeQuery();
+				         while(rs.next()) {
+				            MovieVO mv = new MovieVO(rs.getInt("resNum"),rs.getString("movieTitle"),rs.getString("screenDate"),rs.getString("resSeat"));
+				            list.add(mv);
 			         }
 			      } catch (SQLException e) {
 			         e.printStackTrace();

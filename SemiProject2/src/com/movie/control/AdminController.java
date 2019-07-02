@@ -67,6 +67,7 @@ public class AdminController implements ActionListener,FocusListener {
 			if(av.showCon("로그아웃하시겠습니까?")==0) {
 				av.setVisible(false);
 				hv.setVisible(true);
+				hv.signInButton.requestFocus();
 			}
 		} else if (ob == av.btMovIns) {
 			String movTitle = av.tfMovTitle.getText();

@@ -1,6 +1,7 @@
 package com.movie.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -36,41 +37,41 @@ public class AdminView extends JFrame{
 			, laMovTitle, laMovDir, laMovAct, laMovOpen, laMovImage, laMovSyn;
 	
 	public AdminView() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}// chooser UI 변경
+//		
+		Font f = new Font("Dialog",Font.BOLD,25);
 		
 		btMovie = new JButton("영화");
 		btMovie.setBounds(30,30,250,50);
+		btMovie.setFont(f);
 		btSchedule = new JButton("스케줄");
 		btSchedule.setBounds(300,30,250,50);
+		btSchedule.setFont(f);
 		btLogout = new JButton("로그아웃");
 		btLogout.setBounds(1640,30,250,50);
+		btLogout.setFont(f);
 		
 		//영화테이블
 		String[] columTitleM = { "영화번호", "영화제목", "관객수", "감독", "주연", "개봉일" };
 		Object[][] rowDataM = new Object[0][6];
 		dtmM = new DefaultTableModel(rowDataM, columTitleM);
 		movTable = new JTable(dtmM);
+		movTable.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
+		movTable.setRowHeight(40);
+		movTable.setFont(new Font("Dialog",Font.BOLD,25));
 		scroll_tableM = new JScrollPane(movTable);
 		
 		//스케줄 테이블
 		String[] columTitleS = { "상영일정번호", "영화제목", "상영관", "날짜" };
 		Object[][] rowDataS = new Object[0][4];
 		dtmS = new DefaultTableModel(rowDataS, columTitleS);
-		scheTable = new JTable(dtmS);
+		scheTable = new JTable(dtmS); //980 -40 -80 - 860
+		scheTable.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
+		scheTable.setRowHeight(40);
+		scheTable.setFont(new Font("Dialog",Font.BOLD,25));
+		scheTable.getColumn("상영일정번호").setPreferredWidth(180);
+		scheTable.getColumn("영화제목").setPreferredWidth(330);
+		scheTable.getColumn("상영관").setPreferredWidth(100);
+		scheTable.getColumn("날짜").setPreferredWidth(370);
 		scroll_tableS = new JScrollPane(scheTable);
 		
 		
@@ -89,6 +90,7 @@ public class AdminView extends JFrame{
 		scroll_tableM.setBounds(0, 0, 980, 750);
 		btMovDel = new JButton("영화 삭제");
 		btMovDel.setBounds(375, 760, 250, 30);
+		btMovDel.setFont(f);
 		movTablePanel.add(scroll_tableM);
 		movTablePanel.add(btMovDel);
 		movPanel.add(movTablePanel);
@@ -100,37 +102,52 @@ public class AdminView extends JFrame{
 		movPanel.add(movInsPanel);
 		btMovIns = new JButton("영화 추가");
 		btMovIns.setBounds(255, 760, 250, 30);
+		btMovIns.setFont(f);
 		movInsPanel.add(btMovIns);
-		laMovTitle = new JLabel("영화 제목  : ");
+		laMovTitle = new JLabel("영화 제목  :");
 		tfMovTitle = new JTextField();
-		laMovTitle.setBounds(150, 70, 100, 50);
+		laMovTitle.setBounds(90, 70, 200, 50);
+		laMovTitle.setFont(f);
 		tfMovTitle.setBounds(230, 70, 380, 50);
-		laMovDir = new JLabel("감독  :  ");
+		tfMovTitle.setFont(f);
+		laMovDir = new JLabel("감독  :");
 		tfMovDir = new JTextField();
 		laMovDir.setBounds(150, 180, 100, 50);
+		laMovDir.setFont(f);
 		tfMovDir.setBounds(230, 180, 380, 50);
-		laMovAct = new JLabel("주연  :  ");
+		tfMovDir.setFont(f);
+		laMovAct = new JLabel("주연  :");
 		tfMovAct = new JTextField();
 		laMovAct.setBounds(150, 290, 100, 50);
+		laMovAct.setFont(f);
 		tfMovAct.setBounds(230, 290, 380, 50);
-		laMovOpen = new JLabel("개봉일  :  ");
+		tfMovAct.setFont(f);
+		laMovOpen = new JLabel("개봉일 :");
 		tfMovOpen = new JTextField();
-		laMovOpen.setBounds(150, 400, 100, 50);
+		laMovOpen.setBounds(130, 400, 130, 50);
 		tfMovOpen.setBounds(230, 400, 380, 50);
-		laMovSyn = new JLabel("줄거리 : ");
+		laMovOpen.setFont(f);
+		tfMovOpen.setFont(f);
+		laMovSyn = new JLabel("줄거리 :");
 		tfMovSyn = new JTextField();
 		laMovSyn.setBounds(130, 510, 150, 50);
 		tfMovSyn.setBounds(230, 510, 320, 50);
+		laMovSyn.setFont(f);
+		tfMovSyn.setFont(f);
 		tfMovSyn.setEnabled(false);
 		btMovSyn = new JButton("첨부");
 		btMovSyn.setBounds(560, 510, 60, 50);
+		btMovSyn.setFont(f);
 		laMovImage = new JLabel("포스터 이미지 : ");
 		tfMovImage = new JTextField();
 		tfMovImage.setEnabled(false);
-		laMovImage.setBounds(130, 620, 150, 50);
+		laMovImage.setBounds(50, 620, 200, 50);
 		tfMovImage.setBounds(230, 620, 320, 50);
+		laMovImage.setFont(f);
+		tfMovImage.setFont(f);
 		btMovImg = new JButton("찾기");
 		btMovImg.setBounds(560, 620, 60, 50);
+		btMovImg.setFont(f);
 		
 		
 		movInsPanel.add(laMovTitle);
@@ -168,6 +185,7 @@ public class AdminView extends JFrame{
 		schePanel.add(scheTablePanel);
 		btScheDel = new JButton("스케줄 삭제");
 		btScheDel.setBounds(375, 760, 250, 30);
+		btScheDel.setFont(f);
 		scheTablePanel.add("Center",scroll_tableS);
 		scheTablePanel.add("South",btScheDel);
 		
@@ -179,20 +197,25 @@ public class AdminView extends JFrame{
 		
 		scheComMov = new JComboBox<>();
 		scheComMov.setBounds(50, 70, 660, 50);
+		scheComMov.setFont(f);
 		scheInsPanel.add(scheComMov);
 		laSchTitle = new JLabel("영화");
 		laSchTitle.setBounds(70, 20, 50, 50);
+		laSchTitle.setFont(f);
 		scheInsPanel.add(laSchTitle);
 		
 		scheComSreen = new JComboBox<>();
 		scheComSreen.setBounds(50, 270, 660, 50);
+		scheComSreen.setFont(f);
 		scheInsPanel.add(scheComSreen);
 		laSchScreen = new JLabel("상영관");
-		laSchScreen.setBounds(70, 220, 50, 50);
+		laSchScreen.setBounds(70, 220, 150, 50);
+		laSchScreen.setFont(f);
 		scheInsPanel.add(laSchScreen);
 		
 		laSchDate = new JLabel("날짜");
 		laSchDate.setBounds(70, 400, 50, 50);
+		laSchDate.setFont(f);
 		scheInsPanel.add(laSchDate);
 		tfYear = new JTextField("YYYY");
 		laYear = new JLabel("년");
@@ -206,6 +229,12 @@ public class AdminView extends JFrame{
 		laMonth.setBounds(440,450, 30, 50);
 		tfDate.setBounds(520, 450, 100, 50);
 		laDate.setBounds(640, 450, 30, 50);
+		tfYear.setFont(f);
+		laYear.setFont(f);
+		tfMonth.setFont(f);
+		laMonth.setFont(f);
+		tfDate.setFont(f);
+		laDate.setFont(f);
 		scheInsPanel.add(tfYear);
 		scheInsPanel.add(tfMonth);
 		scheInsPanel.add(tfDate);
@@ -216,8 +245,10 @@ public class AdminView extends JFrame{
 		
 		scheComTime = new JComboBox<>();
 		scheComTime.setBounds(50, 620, 660, 50);
+		scheComTime.setFont(f);
 		laSchTime = new JLabel("시간");
 		laSchTime.setBounds(70, 570, 50, 50);
+		laSchTime.setFont(f);
 		scheInsPanel.add(scheComTime);
 		scheInsPanel.add(laSchTime);
 		scheComTime.addItem("<<< 시간 >>>");
@@ -227,6 +258,7 @@ public class AdminView extends JFrame{
 		
 		btScheIns = new JButton("스케줄 추가");
 		btScheIns.setBounds(255, 760, 250, 30);
+		btScheIns.setFont(f);
 		scheInsPanel.add(btScheIns);
 		
 		
@@ -283,6 +315,21 @@ public class AdminView extends JFrame{
 		return "";
 	}
 	public String chooseSynopsis() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}// chooser UI 변경
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT 파일 읽기", "txt");
 		chooser.setFileFilter(filter);

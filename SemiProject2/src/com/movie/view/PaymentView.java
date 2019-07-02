@@ -60,26 +60,30 @@ public class PaymentView extends JFrame {
       // tf 세팅
       add(tfTickets);
       tfTickets.setBounds(700, 180, 100, 100);
+      tfTickets.setFont(new Font("Dialog",Font.BOLD,80));
       add(tftotalMoney);
       tftotalMoney.setBounds(830, 180, 500, 100);
+      tftotalMoney.setFont(new Font("Dialog",Font.BOLD,80));
 
       TextField[] tf = { tfMovieTitle, tfMovieDate, tfMovieTime, tfMovieSeat }; //tfTicketNumber, 
       int tfy = 300;
       for (int i = 0; i < tf.length; i++) {
          add(tf[i]);
          tf[i].setBounds(800, tfy, 600, 100);
+         tf[i].setFont(new Font("Dialog",Font.BOLD,60));
          tfy += 120;
       }
 
       btPayment = new JButton("결제하기");
+      btPayment.setFont(new Font("Dialog",Font.BOLD,25));
       add(btPayment);
       btPayment.setBounds(1500, 500, 200, 80);
 
       bt_prev = new JButton("이전");
+      bt_prev.setFont(new Font("Dialog",Font.BOLD,40));
       add(bt_prev);
       bt_prev.setBounds(30, 876, 200, 80);
 
-//      setVisible(true);
       setExtendedState(JFrame.MAXIMIZED_BOTH);
 
    }
@@ -113,14 +117,4 @@ public class PaymentView extends JFrame {
       tfMovieSeat.setText(m.get("resSeat"));
    }
 
-//   public void resetView() {
-//      tfTickets.setText("");
-//      tftotalMoney.setText("");
-//      //tfTicketNumber.setText("");
-//      tfMovieTitle.setText("");
-//      tfMovieDate.setText("");
-//      tfMovieTime.setText("");
-//      tfMovieSeat.setText("");
-//   }
-   
 }

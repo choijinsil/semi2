@@ -54,8 +54,8 @@ public class SeatController implements ActionListener {
 				
 				movieTmp.put("resSeat", seatName);
 				movieTmp.put("quantity", cnt+"");
-				System.out.println(cnt+"");
-				System.out.println(movieTmp.get("resSeat"));
+//				System.out.println(cnt+"");
+//				System.out.println(movieTmp.get("resSeat"));
 				//데이터 넘기기
 				
 				sv.setVisible(false);
