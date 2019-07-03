@@ -229,7 +229,7 @@ public class ReservationDAO {
 		connect();
 		MemberVO vo = new MemberVO();
 		try {
-			String sql ="select memberNum as num, memberName as name from membership where id=? and password=?";
+			String sql ="select memberNum as num, memberName as name, totalcnt as cnt from membership where id=? and password=?";
 			pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setString(2, pwd);
@@ -238,6 +238,7 @@ public class ReservationDAO {
 			if(rs.next()) {
 				vo.setMemberNum(rs.getInt("num"));
 				vo.setName(rs.getString("name"));
+				vo.setTotalCnt(rs.getInt("cnt"));
 				vo.setId(id);
 				return vo;
 			}
@@ -309,13 +310,9 @@ public class ReservationDAO {
 		      connect();
 		      try {
 		         String resSeat = movieTmp.get("resSeat");
-		         System.out.println("1");
 		         String scheduleNum = movieTmp.get("scheduleNum");
-		         System.out.println("2");
 		         String memberNum = movieTmp.get("memberNum");
-		         System.out.println("3");
 		         String quantity = movieTmp.get("quantity");
-		         System.out.println("4");
 		         String totalCnt = movieTmp.get("totalCnt");
 		         
 		         String sql = "insert into reservation values (?,?,?,?,?)";
@@ -325,9 +322,7 @@ public class ReservationDAO {
 		            pstmt.setInt(3, Integer.parseInt(memberNum));
 		            pstmt.setInt(4, Integer.parseInt(quantity));
 		            pstmt.setString(5, resSeat);
-		            System.out.println("5");
 		         pstmt.executeUpdate();
-		         System.out.println("6");
 		      return true;
 		      } catch (SQLException e) {
 		         e.printStackTrace();
@@ -379,7 +374,7 @@ public class ReservationDAO {
 			      connect();
 			      try {
 			         //String sql = "update (movie m   inner join schedule s on m.movieNum = s.movieNum) set m.totalViewer = m.totalViewer+? where s.scheduleNum = ?";
-			         String sql = "update movie set totalviewer = totalviewer + ? where movieNum = (select movieNum from schedule where scheduleNum = ?);";
+			         String sql = "update movie set totalviewer = totalviewer + ? where movieNum = (select movieNum from schedule where scheduleNum = ?)";
 			         pstmt = conn.prepareStatement(sql);
 			            pstmt.setInt(1, Integer.parseInt(movieTmp.get("quantity")));
 			            pstmt.setString(2, movieTmp.get("scheduleNum"));

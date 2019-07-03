@@ -6,6 +6,14 @@ public class MemberVO {
 	String pwd;
 	String name;
 	String phone;
+	int totalCnt;
+	
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
+	}
 	public int getMemberNum() {
 		return memberNum;
 	}

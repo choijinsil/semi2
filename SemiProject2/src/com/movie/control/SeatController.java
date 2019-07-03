@@ -24,7 +24,7 @@ public class SeatController implements ActionListener {
 		this.pv = mc.pv;
 		movieTmp = mc.movieTmp;
 		sdao = new ReservationDAO();
-		sv.displayState(sdao.seatState(Integer.parseInt(mc.movieTmp.get("scheduleNum")))); //받아온 상영관번호 넘기기
+		
 		
 		eventUp();
 		
@@ -112,6 +112,7 @@ public class SeatController implements ActionListener {
 			}
 		}  
 		else if (ob == sv.btPrev) {
+			sv.resetSeat();
 			sv.setVisible(false);
 			cv.setVisible(true);
 		}

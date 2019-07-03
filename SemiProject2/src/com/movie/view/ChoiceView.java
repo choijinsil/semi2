@@ -141,7 +141,7 @@ public class ChoiceView extends JFrame {
 		
 		
 		
-		setVisible(true);
+//		setVisible(true);
 		setSize(800, 800);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
  
@@ -181,6 +181,8 @@ public class ChoiceView extends JFrame {
 		dbDate.setModel(model);
 		
 	}// displayScreenDate
+	
+
 
 
 }

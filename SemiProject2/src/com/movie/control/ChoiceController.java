@@ -57,7 +57,7 @@ public class ChoiceController implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(">>>왼쪽콤보");
+				//System.out.println(">>>왼쪽콤보");
 //				JComboBox<String> cb = (JComboBox<String>) e.getSource();
 			
 				cv.selMovie = cv.cbMovie.getSelectedItem().toString(); // 콤보박스값을 selMovie저장
@@ -66,7 +66,7 @@ public class ChoiceController implements ActionListener {
 //				System.out.println(cv.selMovieIdx);		
 //				findScreenDate(selMovie);
 				cv.displayScreenDate(rDao.findScreenDate(cv.selMovie));
-				System.out.println("rDao.findScreenDate(cv.selMovie)>>" + rDao.findScreenDate(cv.selMovie));
+			//	System.out.println("rDao.findScreenDate(cv.selMovie)>>" + rDao.findScreenDate(cv.selMovie));
 //				System.out.println(cv.selMovie);
 				cv.imgLabel
 						.setIcon(new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"));
@@ -74,17 +74,16 @@ public class ChoiceController implements ActionListener {
 		});
 
 		cv.dbDate.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("================================");
-				System.out.println(">>>오른쪽콤보");
+				//System.out.println("================================");
+				//System.out.println(">>>오른쪽콤보");
 				try {
 
 //					System.out.println("스트링으로 받지? >>>" + cv.dbDate.getSelectedItem().toString()+"<<<");
-					System.out.println("cv>>" + cv);
-					System.out.println("dbDate>>" + cv.dbDate);
-					System.out.println("Item>>" + cv.dbDate.getSelectedItem());
+				//	System.out.println("cv>>" + cv);
+				//	System.out.println("dbDate>>" + cv.dbDate);
+				//	System.out.println("Item>>" + cv.dbDate.getSelectedItem());
 					cv.selDate = cv.dbDate.getSelectedItem().toString(); // 현재 스트링
 
 					Date trDate = new SimpleDateFormat("yyyy/MM/dd HH").parse(cv.selDate);
@@ -130,6 +129,7 @@ public class ChoiceController implements ActionListener {
 
 				cv.setVisible(false);
 				sv.setVisible(true);
+				sv.displayState(rDao.seatState(Integer.parseInt(mv.movieTmp.get("scheduleNum")))); //받아온 상영관번호 넘기기
 				// 데이터 날짜 시간 잘라서, 
 				// movieTitle, screenDate, screenTime
 			}

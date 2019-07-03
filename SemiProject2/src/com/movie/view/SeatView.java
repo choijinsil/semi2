@@ -88,6 +88,7 @@ public class SeatView extends JFrame{
 	
 	
 	public void displayState(Vector<SeatVO> list) {//Vector<String> list
+		
 		String str;
 		for(int i = 0; i < list.size(); i++) {
 			String selSeat = list.get(i).getSeatName();
@@ -100,13 +101,18 @@ public class SeatView extends JFrame{
 					if(str2[j].equals(jba.getText())) {
 						jba.setBackground(Color.black);
 						jba.setEnabled(false);
-						jba.setText("X");
 					} 
 				}
 			}
 		}
 	}
 	
+	public void resetSeat() {
+		for (int i = 0; i < jb.size(); i++) {
+			jb.get(i).setBackground(Color.GREEN);
+			jb.get(i).setEnabled(true);
+		}
+	}
 	public void showMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}// showMsg

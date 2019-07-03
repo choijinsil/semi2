@@ -171,6 +171,8 @@ public class HomeController implements ActionListener,FocusListener {
 				hv.signIn(vo.getName());
 				movieTmp.put("id", vo.getId());
 				movieTmp.put("memberNum", (vo.getMemberNum()+""));
+				movieTmp.put("totalCnt",(vo.getTotalCnt()+""));
+				System.out.println(vo.getTotalCnt()+"");
 				sign = true;
 			}
 			
