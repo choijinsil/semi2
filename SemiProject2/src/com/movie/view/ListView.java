@@ -42,6 +42,8 @@ public class ListView extends JFrame{
       add(rescancelButton);
       add(backButton);
       
+      table.setEnabled(false);
+      
       setLayout(null);
       setExtendedState(JFrame.MAXIMIZED_BOTH);
 //      setVisible(true);
