@@ -49,24 +49,24 @@ public class HomeController implements ActionListener,FocusListener {
 		this.av = main.av;
 		
 		ArrayList<MovieVO> list = new ReservationDAO().movieSearch();
+		hv.movieBox.removeAll();
 		for (int i = 0; i < list.size(); i++) {
 			hv.movieBox.add(hv.addMoiveBox(list.get(i)));
 			int s = i;
 			hv.movieButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(sign) {
+					if(!(movieTmp.get("id")==null)) {
+						cv.displayTable(new ReservationDAO().findMovieTitle());
 						hv.setVisible(false);
 						cv.setVisible(true);
-//						System.out.println(list.get(s).getMovieNum());// 액션 이벤트
 					}else {
 						hv.showMsg("예매를 하시려면 로그인 하세요");
-//						System.out.println("로그인 하세요");
 					}
 				}
 			});
 		}
-		
+
 		eventUp();
 		hv.setVisible(true);
 		hv.signUpButton.requestFocus();
@@ -110,6 +110,7 @@ public class HomeController implements ActionListener,FocusListener {
 				}
 			}
 		});
+		
 		sUv.phone2Tf.addKeyListener(new KeyAdapter() {			
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -118,6 +119,7 @@ public class HomeController implements ActionListener,FocusListener {
 				}
 			}
 		});
+		
 		sUv.phone3Tf.addKeyListener(new KeyAdapter() {			
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -172,7 +174,6 @@ public class HomeController implements ActionListener,FocusListener {
 				movieTmp.put("id", vo.getId());
 				movieTmp.put("memberNum", (vo.getMemberNum()+""));
 				movieTmp.put("totalCnt",(vo.getTotalCnt()+""));
-				System.out.println(vo.getTotalCnt()+"");
 				sign = true;
 			}
 			
@@ -181,16 +182,18 @@ public class HomeController implements ActionListener,FocusListener {
 			sUv.init();
 			idck=false;
 			sUv.setVisible(true);
+			
 		}else if(ob== sUv.cancelButton) {
 			sUv.setVisible(false);
 			hv.setVisible(true);
+			
 		}else if(ob == sUv.signUpButton) {
 			vo = new MemberVO();
 			vo.setId(sUv.idTf.getText());
 			vo.setPwd(new String(sUv.pwdTf.getPassword()));
 			vo.setName(sUv.nameTf.getText());
-			vo.setPhone(sUv.phone1Tf+"-"+sUv.phone2Tf+"-"+
-					sUv.phone3Tf);
+			vo.setPhone(sUv.phone1Tf.getText()+"-"+sUv.phone2Tf.getText()+"-"+
+					sUv.phone3Tf.getText());//.getText()
 			if(!idck) {
 				sUv.showMsg("아이디 중복확인을 해주세요");
 				sUv.checkIdButton.requestFocus();
@@ -219,12 +222,12 @@ public class HomeController implements ActionListener,FocusListener {
 			}
 			if(new ReservationDAO().signUp(vo)) {
 				sUv.showMsg("환영합니다");
-				
 				sUv.setVisible(false);
 				hv.setVisible(true);
 			}else {
 				sUv.showMsg("회원가입에 실패했습니다.");
 			}
+			
 		}else if(ob == sUv.checkIdButton) {
 			if(!sUv.idTf.getText().matches("[a-zA-Z][a-zA-Z\\d]{3,6}")) {
 				sUv.showMsg("형식에 맞지 않습니다");
@@ -235,39 +238,44 @@ public class HomeController implements ActionListener,FocusListener {
 				sUv.showMsg("사용 가능한 아이디입니다.");
 				idck = true;
 			}else {
-				System.out.println(new ReservationDAO().checkID(sUv.idTf.getText()));
 				sUv.showMsg("사용할 수 없는 아이디입니다.");
 				sUv.idTf.setText("");
 				sUv.idTf.requestFocus();
 			}
+			
 		}else if(ob == hv.signOutButton) {
 			if(hv.showCon("로그아웃하시겠습니까?")==0) {
 				movieTmp.clear();
 				sign=false;
 				hv.signOut();
 			}
+			
 		}else if(ob == hv.resButton) {
+			 cv.displayTable(new ReservationDAO().findMovieTitle());
 			hv.setVisible(false);
 			cv.setVisible(true);
+			
 		}else if(ob == hv.readResButton) {
-	         String loginId = movieTmp.get("id"); //테스트용 id세팅입니다. 수정해야돼요
+	         String loginId = movieTmp.get("id"); 
 	         lv.displayTable(new ReservationDAO().findReservationInfo(loginId));
 	         hv.setVisible(false);
 	         lv.setVisible(true);
+	         
 	      }else if(ob == lv.rescancelButton) {
 	         String resNum = lv.showInput("삭제할 예매번호를 입력해주세요");
+	         if(resNum==null) {
+	        	 return;
+	         }
 	         if(!resNum.matches("[0-9]+")) {
-	            lv.showMsg("다시 입력해주세요");
+	            lv.showMsg("다시 입력해주세요.");
 	            return;
 	         }
 	         if(!new ReservationDAO().deleteReservation(Integer.parseInt(resNum))) { 
-	            lv.showMsg("다시 입력해주세요");
+	            lv.showMsg("다시 입력해주세요.");
 	            return;
 	         }
-	         
-	         lv.showMsg("삭제에 성공하였습니다");
-	        String loginId = "hana"; //테스트용 id세팅입니다. 수정해야돼요
-	         lv.displayTable(new ReservationDAO().findReservationInfo(loginId));
+	         lv.showMsg("삭제에 성공하였습니다.");
+	         lv.displayTable(new ReservationDAO().findReservationInfo(movieTmp.get("id")));
 	      }
 	}
 	

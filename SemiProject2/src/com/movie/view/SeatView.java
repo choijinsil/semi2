@@ -51,22 +51,22 @@ public class SeatView extends JFrame{
 		btPrev.setFont(f);
 		
 		seatP1 = new JPanel();
-		seatP1.setLayout(new GridLayout(1,3));
-		seatP1.add(new JLabel());
+		seatP1.setLayout(new GridLayout(1,1));
+//		seatP1.add(new JLabel());
 		seatP1.add(screen);
-		seatP1.add(new JLabel());
+//		seatP1.add(new JLabel());
 		seatP1.setBounds(360, 10, 1200, 300);
 		
 		seatP2 = new JPanel();
-		seatP2.setLayout(new GridLayout(1, 7, 20, 20));
-		seatP2.add(new JLabel());
+		seatP2.setLayout(new GridLayout(1, 5, 200, 150));
+//		seatP2.add(new JLabel());
 		seatP2.add(seat1);
 		seatP2.add(seat2);
 		seatP2.add(seat3);
 		seatP2.add(seat4);
 		seatP2.add(seat5);
-		seatP2.add(new JLabel());
-		seatP2.setBounds(340, 400, 1250, 200);
+//		seatP2.add(new JLabel());
+		seatP2.setBounds(20, 500, 1880, 200);
 	
 		setLayout(null);
 		add(btNext);
@@ -74,9 +74,7 @@ public class SeatView extends JFrame{
 		add(seatP2);
 		add(seatP1);
 		
-		//setSize(500,300);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		setVisible(true);
 		
 		jb = new Vector<JButton>();
 		jb.add(seat1);
@@ -88,7 +86,6 @@ public class SeatView extends JFrame{
 	
 	
 	public void displayState(Vector<SeatVO> list) {//Vector<String> list
-		
 		String str;
 		for(int i = 0; i < list.size(); i++) {
 			String selSeat = list.get(i).getSeatName();
@@ -113,7 +110,9 @@ public class SeatView extends JFrame{
 			jb.get(i).setEnabled(true);
 		}
 	}
+	
 	public void showMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}// showMsg
+	
 }

@@ -54,7 +54,6 @@ public class HomeView extends JFrame {
 		mListSPanel.setBounds(520, 170, 1400, 830);
 		add(mListSPanel);
 		
-		
 		//guest
 		idTextField = new JTextField("아이디");
 		idTextField.setFont(f);
@@ -71,14 +70,12 @@ public class HomeView extends JFrame {
 			guestPanel.add(signInButton);
 			guestPanel.add(signUpButton);
 			
-		
 		loginPanel = new JPanel(new GridLayout(3, 1));
 			loginPanel.add(new JLabel());
 			loginPanel.add(guestPanel);
 		loginPanel.setBounds(10, 0, 500, 1000);
 		loginPanel.setBorder(new LineBorder(Color.black));
 		add(loginPanel);
-		
 		
 		//member
 		idLabel = new JLabel();
@@ -105,7 +102,6 @@ public class HomeView extends JFrame {
 		add(memberPanel);
 			
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		setVisible(true);
 	}
 	
 	public void signIn(String name) {
@@ -150,9 +146,5 @@ public class HomeView extends JFrame {
 	public int showCon(String str) {
 		return JOptionPane.showConfirmDialog(this, str);
 	}
-	
-//	public static void main(String[] args) {
-//		new HomeView();
-//	}
 	
 }

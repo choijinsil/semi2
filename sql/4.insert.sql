@@ -4,9 +4,9 @@ insert into screen values(2,5);
 insert into screen values(3,5);
 
 -- movie
-insert into movie values(movieSeq.nextval,'알라딘',10,'가이리치','자스민','2019/07/01',null,null);
-insert into movie values(movieSeq.nextval,'기생충',10,'봉준호','송강호','2019/07/01',null,null);
-insert into movie values(movieSeq.nextval,'토이스토리',10,'조시쿨리','우디','2019/07/01',null,null);
+insert into movie values(movieSeq.nextval,'알라딘',3,'가이리치','자스민','2019/07/01',null,null);
+insert into movie values(movieSeq.nextval,'기생충',2,'봉준호','송강호','2019/07/01',null,null);
+insert into movie values(movieSeq.nextval,'토이스토리',0,'조시쿨리','우디','2019/07/01',null,null);
 
 -- membership
 insert into MEMBERSHIP values(memberSeq.nextval, 'hana', 'a1234', '유하나', '010-2322-6754',3);
@@ -20,32 +20,32 @@ insert into MEMBERSHIP values(1,'관리자','rhksfl1!','관리자','010-0000-000
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 13','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 13','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/05 13','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 11','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 14','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/05 16','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/05 12','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/05 15','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/05 17','yyyy/mm/dd hh24'));
 
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/06 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/06 13','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/06 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 13','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 13','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 11','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 14','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/06 16','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 12','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 15','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 17','yyyy/mm/dd hh24'));
 
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 13','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 13','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 15','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 10','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 13','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 11','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 14','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 16','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 12','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 15','yyyy/mm/dd hh24'));
+insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 17','yyyy/mm/dd hh24'));
 
 -- reservation
 insert into RESERVATION values (100011,1,10001,2,'A2,A3');

@@ -37,7 +37,6 @@ public class AdminView extends JFrame{
 			, laMovTitle, laMovDir, laMovAct, laMovOpen, laMovImage, laMovSyn;
 	
 	public AdminView() {
-//		
 		Font f = new Font("Dialog",Font.BOLD,25);
 		
 		btMovie = new JButton("영화");
@@ -73,8 +72,6 @@ public class AdminView extends JFrame{
 		scheTable.getColumn("상영관").setPreferredWidth(100);
 		scheTable.getColumn("날짜").setPreferredWidth(370);
 		scroll_tableS = new JScrollPane(scheTable);
-		
-		
 		
 		//////////////////////////영화//////////////////////////
 		//영화 패널
@@ -149,7 +146,6 @@ public class AdminView extends JFrame{
 		btMovImg.setBounds(560, 620, 60, 50);
 		btMovImg.setFont(f);
 		
-		
 		movInsPanel.add(laMovTitle);
 		movInsPanel.add(tfMovTitle);
 		movInsPanel.add(laMovDir);
@@ -164,9 +160,6 @@ public class AdminView extends JFrame{
 		movInsPanel.add(btMovSyn);
 		movInsPanel.add(laMovSyn);
 		movInsPanel.add(tfMovSyn);
-		
-		
-		
 		
 		//////////////////////////스케줄//////////////////////////
 		//스케줄 패널
@@ -242,7 +235,6 @@ public class AdminView extends JFrame{
 		scheInsPanel.add(laMonth);
 		scheInsPanel.add(laDate);
 		
-		
 		scheComTime = new JComboBox<>();
 		scheComTime.setBounds(50, 620, 660, 50);
 		scheComTime.setFont(f);
@@ -261,7 +253,6 @@ public class AdminView extends JFrame{
 		btScheIns.setFont(f);
 		scheInsPanel.add(btScheIns);
 		
-		
 		add(movPanel);
 		add(schePanel);		
 		add(btMovie);
@@ -272,23 +263,12 @@ public class AdminView extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		movPanel.setVisible(true);
 		schePanel.setVisible(false);
-//		setVisible(true);
 	}
 	
-	
 	public void displayMovTable(ArrayList<OpenMovVO> list) {
-
 		dtmM.setRowCount(0);
-
 		for (int i = 0; i < list.size(); i++) {
 			OpenMovVO vo = list.get(i);
-//			int movieNum = vo.getMovieNum();
-//			String movieTitle = vo.getMovieTitle();
-//			int totalViewer = vo.getTotalViewer();
-//			String director = vo.getDirector();
-//			String mainActor = vo.getMainActor();
-//			String openingDate = vo.getOpeningDate();
-
 			Object[] rowData = { vo.getMovieNum(), vo.getMovieTitle(), vo.getTotalViewer(), vo.getDirector(), vo.getMainActor(), vo.getOpeningDate() };
 			dtmM.addRow(rowData);
 		}
@@ -296,7 +276,7 @@ public class AdminView extends JFrame{
 	
 	
 	public void displayScheTable(ArrayList<ScheduleVO> list) {
-		dtmM.setRowCount(0);
+		dtmS.setRowCount(0);
 		for (int i = 0; i < list.size(); i++) {
 			ScheduleVO vo = list.get(i);
 			Object[] rowData = { vo.getScheduleNum(), vo.getMovieTitle(), vo.getScreenNum(), vo.getScreenDate()};
@@ -315,21 +295,6 @@ public class AdminView extends JFrame{
 		return "";
 	}
 	public String chooseSynopsis() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}// chooser UI 변경
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT 파일 읽기", "txt");
 		chooser.setFileFilter(filter);
@@ -366,5 +331,21 @@ public class AdminView extends JFrame{
 	
 	public int showCon(String msg) {
 		return JOptionPane.showConfirmDialog(this, msg);
+	}
+	
+	public void initMovie() {
+		tfMovTitle.setText("");
+		tfMovDir.setText("");
+		tfMovAct.setText("");
+		tfMovOpen.setText("");
+		tfMovSyn.setText("");
+		tfMovImage.setText("");
+	}
+	
+	public void initSchedule() {
+		tfYear.setText("YYYY");
+		tfMonth.setText("MM");
+		tfDate.setText("DD");
+		scheComTime.setSelectedIndex(0);
 	}
 }

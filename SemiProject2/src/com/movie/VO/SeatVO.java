@@ -5,11 +5,9 @@ public class SeatVO {
 	private String seatName;
 	
 	public SeatVO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public SeatVO(String screenNum, String seatName) {
-		super();
 		this.screenNum = screenNum;
 		this.seatName = seatName;
 	}
@@ -29,8 +27,5 @@ public class SeatVO {
 	public void setSeatName(String seatName) {
 		this.seatName = seatName;
 	}
-	
-	
-	
 	
 }

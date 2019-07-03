@@ -25,7 +25,6 @@ public class SeatController implements ActionListener {
 		movieTmp = mc.movieTmp;
 		sdao = new ReservationDAO();
 		
-		
 		eventUp();
 		
 		sv.btNext.addActionListener(new ActionListener() {
@@ -50,18 +49,12 @@ public class SeatController implements ActionListener {
 					return;
 				}
 				
-				System.out.println(seatName);
-				
 				movieTmp.put("resSeat", seatName);
 				movieTmp.put("quantity", cnt+"");
-//				System.out.println(cnt+"");
-//				System.out.println(movieTmp.get("resSeat"));
-				//데이터 넘기기
 				
 				sv.setVisible(false);
 				pv.init(movieTmp);
 				pv.setVisible(true);
-				
 			}
 		});
 	}
@@ -80,30 +73,33 @@ public class SeatController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
 		if (ob == sv.seat1) {
-			//System.out.println(sv.seat1.getBackground());
 			if(sv.seat1.getBackground() == Color.green) {
 				sv.seat1.setBackground(Color.red);
 			} else {
 				sv.seat1.setBackground(Color.green);
 			}
+		
 		} else if (ob == sv.seat2) {
 			if(sv.seat2.getBackground() == Color.green) {
 				sv.seat2.setBackground(Color.red);
 			} else {
 				sv.seat2.setBackground(Color.green);
 			}
+	
 		} else if (ob == sv.seat3) {
 			if(sv.seat3.getBackground() == Color.green) {
 				sv.seat3.setBackground(Color.red);
 			} else {
 				sv.seat3.setBackground(Color.green);
 			}
+	
 		} else if (ob == sv.seat4) {
 			if(sv.seat4.getBackground() == Color.green) {
 				sv.seat4.setBackground(Color.red);
 			} else {
 				sv.seat4.setBackground(Color.green);
 			}
+	
 		} else if (ob == sv.seat5) {
 			if(sv.seat5.getBackground() == Color.green) {
 				sv.seat5.setBackground(Color.red);
@@ -111,6 +107,7 @@ public class SeatController implements ActionListener {
 				sv.seat5.setBackground(Color.green);
 			}
 		}  
+
 		else if (ob == sv.btPrev) {
 			sv.resetSeat();
 			sv.setVisible(false);
@@ -118,7 +115,4 @@ public class SeatController implements ActionListener {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		new SeatController();
-//	}
 }

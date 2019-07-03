@@ -23,10 +23,10 @@ public class SignUpView extends JFrame {
 	public SignUpView() {
 		Font f = new Font("Dialog",Font.BOLD,25);
 		setLayout(null);
-		idLabel = new JLabel("아이디(4~7자리 영어 + 숫자)");
-		idLabel.setBounds(0, 50, 390, 40);
+		idLabel = new JLabel("아이디(영문 시작, 영문/숫자 혼합 4~7자리)");
+		idLabel.setBounds(0, 50, 550, 40);
 		idLabel.setFont(f);
-		pwdLabel = new JLabel("비밀번호(영문,숫자 혼합 4~8자리)");
+		pwdLabel = new JLabel("비밀번호(영문/숫자 혼합 4~8자리)");
 		pwdLabel.setBounds(0, 150, 390, 40);
 		pwdLabel.setFont(f);
 		pwd2Label = new JLabel("비밀번호 확인");
@@ -80,7 +80,7 @@ public class SignUpView extends JFrame {
 		
 		panel = new JPanel();
 			panel.setLayout(null);
-			panel.setBounds(780, 0, 390, 1000);
+			panel.setBounds(780, 0, 550, 1000);
 			panel.add(idLabel);
 			panel.add(idTf);
 			panel.add(pwdLabel);
@@ -98,13 +98,12 @@ public class SignUpView extends JFrame {
 			panel.add(signUpButton);
 			panel.add(cancelButton);
 			panel.add(checkIdButton);
-			
 		
 		add(new JLabel());
 		add(panel);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		setVisible(true);
 	}
+	
 	public void init() {
 		idTf.setText("");
 		pwdTf.setText("");
@@ -114,11 +113,9 @@ public class SignUpView extends JFrame {
 		phone2Tf.setText("");
 		phone3Tf.setText("");		
 	}
+	
 	public void showMsg(String str) {
 		JOptionPane.showMessageDialog(this, str);
 	}
-//	public static void main(String[] args) {
-//		new SignUpView();
-//	}
 	
 }

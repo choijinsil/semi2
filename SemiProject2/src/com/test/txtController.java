@@ -33,22 +33,15 @@ public class txtController extends JFrame implements ActionListener {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   
-		
-//		la = new JLabel("aaa");
-//		la.setBounds(30, 440, 400, 30);
+
 		ta = new JTextArea();
 		ta.setBounds(30, 30, 400, 400);
 		b = new JButton();
@@ -59,7 +52,6 @@ public class txtController extends JFrame implements ActionListener {
 		add(b);
 		add(bu);
 		ta.setText("오늘 서울은 하루종일 맑음 \n윤하가 불렀음");
-//		add(la);
 		setLayout(null);
 		setBounds(30, 30, 600, 600);
 		setVisible(true);
@@ -69,7 +61,6 @@ public class txtController extends JFrame implements ActionListener {
 	
 	public static void main(String[] args) {
 		new txtController();
-		
 	}
 
 	@Override
@@ -83,7 +74,6 @@ public class txtController extends JFrame implements ActionListener {
 		int s = chooser.showOpenDialog(this);
 		System.out.println(s);
 		System.out.println(chooser.getSelectedFile().getAbsolutePath());
-//		la.setText(chooser.getSelectedFile().getAbsolutePath());
 		
 		try {
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
@@ -101,16 +91,13 @@ public class txtController extends JFrame implements ActionListener {
 				System.out.println("실패");
 			}
 		} catch (FileNotFoundException er) {
-			// TODO Auto-generated catch block
 			er.printStackTrace();
 		} catch (IOException er) {
-			// TODO Auto-generated catch block
 			er.printStackTrace();
 		}
 		} else {
 			ta.setText("");
 			ta.setText(dao.txtLead());
 		}
-//		b.setIcon(dao.imgLead());
 	}
 }

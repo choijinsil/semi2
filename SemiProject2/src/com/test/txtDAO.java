@@ -33,12 +33,10 @@ public class txtDAO  {
 			pro.load(new FileReader("SemiProject2/conn/conn.properties"));
 			Class.forName(pro.getProperty("driver"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -53,7 +51,6 @@ public class txtDAO  {
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			disconnect();			
@@ -71,20 +68,8 @@ public class txtDAO  {
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				return rs.getString("txt_clob");
-//				ByteArrayOutputStream bout = new ByteArrayOutputStream();
-//				InputStream in = rs.getBinaryStream("txt_clob");
-//				byte[] buf = new byte[1024];
-//				int read = 0;
-//				while((read=in.read(buf,0,buf.length))!=-1) {
-//					bout.write(buf, 0, read);
-//				}
-////				BufferedImage bimg = ImageIO.read(in);
-//				
-//				in.close();
-//				return bout.toString();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			disconnect();			

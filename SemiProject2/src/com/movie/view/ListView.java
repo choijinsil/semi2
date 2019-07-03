@@ -46,7 +46,6 @@ public class ListView extends JFrame{
       
       setLayout(null);
       setExtendedState(JFrame.MAXIMIZED_BOTH);
-//      setVisible(true);
    }
 
    
@@ -66,7 +65,5 @@ public class ListView extends JFrame{
    public void showMsg(String msg) {
       JOptionPane.showMessageDialog(this, msg);
    }
-//   public static void main(String[] args) {
-//	new ListView();
-//   }
+
 }

@@ -102,7 +102,6 @@ public class AdminDAO {
 		} finally {
 			disconnect();
 		}
-
 		return movList;
 	}// 스케줄추가할영화선택
 
@@ -121,11 +120,8 @@ public class AdminDAO {
 		} finally {
 			disconnect();
 		}
-
 		return screenList;
 	}// 스케줄추가할상영관
-
-
 
 	public boolean removeMov(int movNum) {
 		connect();
@@ -137,7 +133,7 @@ public class AdminDAO {
 			if (t == 1)
 				return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		} finally {
 			disconnect();
 		}
@@ -154,7 +150,7 @@ public class AdminDAO {
 			if (t == 1)
 				return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		} finally {
 			disconnect();
 		}
@@ -163,7 +159,6 @@ public class AdminDAO {
 
 	public boolean addMovie(OpenMovVO vo) {
 		connect();
-
 		try {
 			String sql = "insert into Movie values (movieSeq.nextval,?,0,?,?,(to_date(?,'yyyy/mm/dd')),?,?)";
 			stmt = conn.prepareStatement(sql);
@@ -176,12 +171,10 @@ public class AdminDAO {
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-
 		return false;
 	}// 영화 추가하기
 
@@ -196,12 +189,10 @@ public class AdminDAO {
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		} finally {
 			disconnect();
 		}
-		return false;
 	}// 스케줄 추가하기
 
 	private void connect() {// 연결객체생성

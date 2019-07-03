@@ -1,16 +1,15 @@
 package com.movie.VO;
 
 public class OpenMovVO {
-	int movieNum;
-	String movieTitle;
-	int totalViewer;
-	String director;
-	String mainActor;
-	String openingDate;
-	String movieSyn;
+	private int movieNum;
+	private String movieTitle;
+	private int totalViewer;
+	private String director;
+	private String mainActor;
+	private String openingDate;
+	private String movieSyn;
 
-	byte[] movieImg;
-
+	private byte[] movieImg;
 
 	public OpenMovVO() {
 
@@ -18,7 +17,6 @@ public class OpenMovVO {
 
 	public OpenMovVO(int movieNum, String movieTitle, int totalViewer, String director, String mainActor,
 			String openingDate, byte[] movieImg) {
-		super();
 		this.movieNum = movieNum;
 		this.movieTitle = movieTitle;
 		this.totalViewer = totalViewer;

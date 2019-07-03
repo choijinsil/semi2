@@ -33,12 +33,10 @@ public class imgDAO  {
 			pro.load(new FileReader("SemiProject2/conn/conn.properties"));
 			Class.forName(pro.getProperty("driver"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -53,7 +51,6 @@ public class imgDAO  {
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			disconnect();			
@@ -84,7 +81,6 @@ public class imgDAO  {
 				return icon;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			disconnect();			

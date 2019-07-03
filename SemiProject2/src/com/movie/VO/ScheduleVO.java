@@ -7,11 +7,9 @@ public class ScheduleVO {
 	private String screenDate;
 	
 	public ScheduleVO() {
-		// TODO Auto-generated constructor stub
 	}//생성자
 	
 	public ScheduleVO(int scheduleNum, String movieTitle, int screenNum, String screenDate) {
-		super();
 		this.scheduleNum = scheduleNum;
 		this.movieTitle = movieTitle;
 		this.screenNum = screenNum;
@@ -42,6 +40,5 @@ public class ScheduleVO {
 	public void setScreenDate(String screenDate) {
 		this.screenDate = screenDate;
 	}
-	
 	
 }

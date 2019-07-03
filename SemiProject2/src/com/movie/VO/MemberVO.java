@@ -1,12 +1,12 @@
 package com.movie.VO;
 
 public class MemberVO {
-	int memberNum;
-	String id;
-	String pwd;
-	String name;
-	String phone;
-	int totalCnt;
+	private int memberNum;
+	private String id;
+	private String pwd;
+	private String name;
+	private String phone;
+	private int totalCnt;
 	
 	public int getTotalCnt() {
 		return totalCnt;

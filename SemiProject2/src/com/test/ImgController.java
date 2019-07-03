@@ -31,19 +31,14 @@ public class ImgController extends JFrame implements ActionListener {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   
 		
 		la = new JLabel("aaa");
 		la.setBounds(30, 440, 400, 30);
@@ -90,10 +85,8 @@ public class ImgController extends JFrame implements ActionListener {
 				System.out.println("실패");
 			}
 		} catch (FileNotFoundException er) {
-			// TODO Auto-generated catch block
 			er.printStackTrace();
 		} catch (IOException er) {
-			// TODO Auto-generated catch block
 			er.printStackTrace();
 		}
 		b.setIcon(dao.imgLead());

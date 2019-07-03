@@ -31,9 +31,11 @@ CREATE TABLE Schedule (
 	scheduleNum NUMBER NOT NULL, /* 상영일정번호 */
 	movieNum NUMBER, /* 영화번호 */
 	screenNum NUMBER, /* 상영관번호 */
-	screenDate DATE /* 상영일자 및 시간 */
+	screenDate DATE, /* 상영일자 및 시간 */
+	UNIQUE (screenDate,screenNum)
 );
 
+ALTER TABLE Schedule ADD UNIQUE (screenNum,screenDate);
 
 /* 예매 */
 CREATE TABLE Reservation (
