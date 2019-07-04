@@ -52,6 +52,16 @@ public class AdminController implements ActionListener,FocusListener {
 	}
 
 	private void eventUp() {
+		av.scheComSreen.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(av.scheComSreen.getSelectedItem()==null) {
+					return;
+				}
+				av.displayTime((String)av.scheComSreen.getSelectedItem());
+			}
+		});
+		
 		av.btMovie.addActionListener(this);
 		av.btSchedule.addActionListener(this);
 		av.btLogout.addActionListener(this);

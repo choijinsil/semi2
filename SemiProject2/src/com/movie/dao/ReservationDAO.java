@@ -297,7 +297,7 @@ public class ReservationDAO {
 		connect();
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 		try {
-			String sql = "select r.resNum resNum, m.movieTitle movieTitle, to_char(s.screenDate,'yyyy/mm/dd hh24:mi') screenDate, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ?";
+			String sql = "select r.resNum resNum, m.movieTitle movieTitle, to_char(s.screenDate,'yyyy/mm/dd hh24:mi') screenDate, r.resSeat resSeat from movie m inner join schedule s on m.movienum = s.movienum inner join reservation r on s.schedulenum = r.schedulenum inner join membership ms on r.memberNum = ms.memberNum WHERE id = ? order by s.screendate desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, loginId);
 			rs = pstmt.executeQuery();

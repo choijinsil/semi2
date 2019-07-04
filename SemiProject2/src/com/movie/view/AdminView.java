@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -19,6 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+import com.movie.VO.MovieVO;
 import com.movie.VO.OpenMovVO;
 import com.movie.VO.ScheduleVO;
 
@@ -52,18 +54,32 @@ public class AdminView extends JFrame{
 		//영화테이블
 		String[] columTitleM = { "영화번호", "영화제목", "관객수", "감독", "주연", "개봉일" };
 		Object[][] rowDataM = new Object[0][6];
-		dtmM = new DefaultTableModel(rowDataM, columTitleM);
+		dtmM = new DefaultTableModel(rowDataM, columTitleM) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		movTable = new JTable(dtmM);
+		movTable.getTableHeader().setReorderingAllowed(false);
+		movTable.getTableHeader().setResizingAllowed(false);
 		movTable.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
 		movTable.setRowHeight(40);
 		movTable.setFont(new Font("Dialog",Font.BOLD,25));
 		scroll_tableM = new JScrollPane(movTable);
-		
+
 		//스케줄 테이블
 		String[] columTitleS = { "상영일정번호", "영화제목", "상영관", "날짜" };
 		Object[][] rowDataS = new Object[0][4];
-		dtmS = new DefaultTableModel(rowDataS, columTitleS);
+		dtmS = new DefaultTableModel(rowDataS, columTitleS) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		scheTable = new JTable(dtmS); //980 -40 -80 - 860
+		scheTable.getTableHeader().setReorderingAllowed(false);
+		scheTable.getTableHeader().setResizingAllowed(false);
 		scheTable.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
 		scheTable.setRowHeight(40);
 		scheTable.setFont(new Font("Dialog",Font.BOLD,25));
@@ -72,7 +88,7 @@ public class AdminView extends JFrame{
 		scheTable.getColumn("상영관").setPreferredWidth(100);
 		scheTable.getColumn("날짜").setPreferredWidth(370);
 		scroll_tableS = new JScrollPane(scheTable);
-		
+
 		//////////////////////////영화//////////////////////////
 		//영화 패널
 		movPanel = new JPanel(); 
@@ -244,15 +260,15 @@ public class AdminView extends JFrame{
 		scheInsPanel.add(scheComTime);
 		scheInsPanel.add(laSchTime);
 		scheComTime.addItem("<<< 시간 >>>");
-		scheComTime.addItem("10:00");
-		scheComTime.addItem("11:00");
-		scheComTime.addItem("12:00");
-		scheComTime.addItem("13:00");
-		scheComTime.addItem("14:00");
-		scheComTime.addItem("15:00");
-		scheComTime.addItem("16:00");
-		scheComTime.addItem("17:00");
-		scheComTime.addItem("18:00");
+//		scheComTime.addItem("10:00");
+//		scheComTime.addItem("11:00");
+//		scheComTime.addItem("12:00");
+//		scheComTime.addItem("13:00");
+//		scheComTime.addItem("14:00");
+//		scheComTime.addItem("15:00");
+//		scheComTime.addItem("16:00");
+//		scheComTime.addItem("17:00");
+//		scheComTime.addItem("18:00");
 		
 		btScheIns = new JButton("스케줄 추가");
 		btScheIns.setBounds(255, 760, 250, 30);
@@ -354,4 +370,18 @@ public class AdminView extends JFrame{
 		tfDate.setText("DD");
 		scheComTime.setSelectedIndex(0);
 	}
+	
+	public void displayTime(String screenNum) {
+		String[] time1 = {"<<< 시간 >>>","10:00","13:00","16:00"};
+		String[] time2 = {"<<< 시간 >>>","11:00","14:00","17:00"};
+		String[] time3 = {"<<< 시간 >>>","12:00","15:00","18:00"};
+		if(screenNum.equals("1")) {
+			scheComTime.setModel(new DefaultComboBoxModel(time1));
+		} else if (screenNum.equals("2")) {
+			scheComTime.setModel(new DefaultComboBoxModel(time2));
+		} else if (screenNum.equals("3")){
+			scheComTime.setModel(new DefaultComboBoxModel(time3));
+		}
+	}// displayScreenDate
+	
 }

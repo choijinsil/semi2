@@ -25,6 +25,8 @@ public class ListView extends JFrame{
       String []columnTitle = {"예매번호","영화제목","상영일자","예매좌석"};
       dtm = new DefaultTableModel(rowData, columnTitle);
       table = new JTable(dtm);
+      table.getTableHeader().setReorderingAllowed(false);
+      table.getTableHeader().setResizingAllowed(false);
       table.getTableHeader().setFont(new Font("Dialog",Font.BOLD,25));
       table.setRowHeight(50);
       table.setFont(f);
