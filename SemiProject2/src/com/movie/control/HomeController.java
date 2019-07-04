@@ -81,6 +81,14 @@ public class HomeController implements ActionListener,FocusListener {
 		hv.idTextField.addFocusListener(this);
 		hv.pwdTextField.addFocusListener(this);
 		hv.signOutButton.addActionListener(this);
+		hv.pwdTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					hv.signInButton.doClick();
+				}
+			}
+		});
 		hv.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
