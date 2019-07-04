@@ -2,6 +2,8 @@ package com.movie.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -28,6 +30,14 @@ public class PaymentController {
    }
 
    private void eventUp() {
+	  pv.addWindowListener(new WindowAdapter() {
+		  @Override
+		public void windowClosing(WindowEvent e) {
+			  pv.setVisible(false);
+			  hv.setVisible(true);
+		}
+	}); 
+	   
       pv.bt_prev.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -41,7 +51,9 @@ public class PaymentController {
          @Override
          public void actionPerformed(ActionEvent e) {
             String passWord = pv.showCheckPassword();
-            
+            if(passWord==null) {
+            	return;
+            }
             ReservationDAO rd = new ReservationDAO();
             String loginId = movieTmp.get("id");
             if(rd.checkPassword(loginId,passWord)!=1) {

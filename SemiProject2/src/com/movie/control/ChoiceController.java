@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import com.movie.view.HomeView;
 import com.movie.view.SeatView;
 
 import sun.applet.Main;
+import sun.swing.MenuItemCheckIconFactory;
 
 public class ChoiceController{
 
@@ -44,6 +47,16 @@ public class ChoiceController{
 
       cv.displayTable(rDao.findMovieTitle());
 
+      cv.addWindowListener(new WindowAdapter() {
+    	  @Override
+    	public void windowClosing(WindowEvent e) {
+    		  cv.setVisible(false);
+    		  hv.setVisible(true);
+    	}
+	});
+      
+      
+      
       cv.cbMovie.addActionListener(new ActionListener() { // 영화제목 선택
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -79,7 +92,8 @@ public class ChoiceController{
             mv.movieTmp.put("movieTitle", cv.selMovie); // 영화제목
             mv.movieTmp.put("screenDate", str[0]);
             mv.movieTmp.put("screenTime", str[1]);
-
+            sv.resetSeat();
+            sv.displayState(new ReservationDAO().seatState(Integer.parseInt(mv.movieTmp.get("scheduleNum"))));
             cv.setVisible(false);
             sv.setVisible(true);
          }

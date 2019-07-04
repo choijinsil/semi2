@@ -194,6 +194,23 @@ public class AdminDAO {
 			disconnect();
 		}
 	}// 스케줄 추가하기
+	
+	public String findOpeningDateByMovieTitle(String movieTitle) {
+		connect();
+		try {
+		String sql = "select to_char(openingDate,'yyyy-mm-dd') openingDate from movie where movietitle = ?";
+		stmt = conn.prepareStatement(sql);
+			stmt.setString(1, movieTitle);
+		rs = stmt.executeQuery();
+			rs.next();
+			return rs.getString("openingDate");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return "";
+	}
 
 	private void connect() {// 연결객체생성
 		try {

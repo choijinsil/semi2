@@ -94,11 +94,10 @@ public class SeatView extends JFrame{
 			for(int j = 0; j < str2.length; j++) {
 				for (int k = 0; k < jb.size(); k++) {
 					JButton jba = jb.get(k);
-					//System.out.println(jba.getText());
 					if(str2[j].equals(jba.getText())) {
 						jba.setBackground(Color.black);
 						jba.setEnabled(false);
-					} 
+					}
 				}
 			}
 		}

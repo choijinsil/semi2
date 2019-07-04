@@ -7,10 +7,10 @@ CREATE TABLE Screen (
 /* 영화 */
 CREATE TABLE Movie (
 	movieNum NUMBER NOT NULL, /* 영화번호 */
-	movieTitle VARCHAR2(30) NOT NULL, /* 영화제목 */
+	movieTitle VARCHAR2(100) NOT NULL, /* 영화제목 */
 	totalViewer NUMBER NOT NULL, /* 관객수 */
-	director VARCHAR2(20) NOT NULL, /* 감독 */
-	mainActor VARCHAR2(20) NOT NULL, /* 주연 */
+	director VARCHAR2(30) NOT NULL, /* 감독 */
+	mainActor VARCHAR2(30) NOT NULL, /* 주연 */
 	openingDate DATE NOT NULL, /* 개봉일 */
 	synopsis clob, /* 줄거리 */
 	movieImage blob /* 이미지 */
@@ -35,7 +35,7 @@ CREATE TABLE Schedule (
 	UNIQUE (screenDate,screenNum)
 );
 
-ALTER TABLE Schedule ADD UNIQUE (screenNum,screenDate);
+-- ALTER TABLE Schedule ADD UNIQUE (screenNum,screenDate);
 
 /* 예매 */
 CREATE TABLE Reservation (

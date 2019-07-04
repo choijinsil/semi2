@@ -3,10 +3,13 @@ package com.movie.control;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Map;
 
 import com.movie.dao.ReservationDAO;
 import com.movie.view.ChoiceView;
+import com.movie.view.HomeView;
 import com.movie.view.PaymentView;
 import com.movie.view.SeatView;
 
@@ -14,6 +17,7 @@ public class SeatController implements ActionListener {
 	SeatView sv;
 	ChoiceView cv;
 	PaymentView pv;
+	HomeView hv;
 	ReservationDAO sdao;
 	String seatName;
 	Map<String, String> movieTmp;
@@ -22,11 +26,19 @@ public class SeatController implements ActionListener {
 		this.sv = mc.sv;
 		this.cv = mc.cv;
 		this.pv = mc.pv;
+		hv = mc.hv;
 		movieTmp = mc.movieTmp;
 		sdao = new ReservationDAO();
 		
 		eventUp();
-		
+	}
+
+	private void eventUp() {
+		sv.seat1.addActionListener(this);
+		sv.seat2.addActionListener(this);
+		sv.seat3.addActionListener(this);
+		sv.seat4.addActionListener(this);
+		sv.seat5.addActionListener(this);
 		sv.btNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,16 +69,14 @@ public class SeatController implements ActionListener {
 				pv.setVisible(true);
 			}
 		});
-	}
-
-	private void eventUp() {
-		sv.seat1.addActionListener(this);
-		sv.seat2.addActionListener(this);
-		sv.seat3.addActionListener(this);
-		sv.seat4.addActionListener(this);
-		sv.seat5.addActionListener(this);
-		sv.btNext.addActionListener(this);
 		sv.btPrev.addActionListener(this);
+		sv.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				sv.setVisible(false);
+				hv.setVisible(true);
+			}
+		});
 	}
 
 	@Override

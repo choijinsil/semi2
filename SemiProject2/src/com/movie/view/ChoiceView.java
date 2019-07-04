@@ -108,9 +108,6 @@ public class ChoiceView extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
-	public void getMovieTitle() {
-		System.out.println(cbMovie.getSelectedIndex());
-	}
 
 	public void showMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);

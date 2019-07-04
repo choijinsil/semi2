@@ -362,7 +362,6 @@ public class ReservationDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, scheduleNum);
 			rs = pstmt.executeQuery();
-			System.out.println(scheduleNum);
 			while (rs.next()) {
 				SeatVO svo = new SeatVO();
 				svo.setScreenNum("" + rs.getInt("screennum"));

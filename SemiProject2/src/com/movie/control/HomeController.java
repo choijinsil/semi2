@@ -80,6 +80,12 @@ public class HomeController implements ActionListener,FocusListener {
 		hv.idTextField.addFocusListener(this);
 		hv.pwdTextField.addFocusListener(this);
 		hv.signOutButton.addActionListener(this);
+		hv.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		sUv.signUpButton.addActionListener(this);
 		sUv.cancelButton.addActionListener(this);
@@ -87,21 +93,11 @@ public class HomeController implements ActionListener,FocusListener {
 		sUv.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				lv.setVisible(false);
+				sUv.setVisible(false);
 				hv.setVisible(true);
 				
 			}
 		});
-		
-		lv.rescancelButton.addActionListener(this);
-		lv.backButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lv.setVisible(false);
-				hv.setVisible(true);
-			}
-		});
-		
 		sUv.phone1Tf.addKeyListener(new KeyAdapter() {			
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -126,6 +122,23 @@ public class HomeController implements ActionListener,FocusListener {
 				if(sUv.phone3Tf.getText().length()==4) {
 					sUv.signUpButton.requestFocus();
 				}
+			}
+		});
+		
+		lv.rescancelButton.addActionListener(this);
+		lv.backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lv.setVisible(false);
+				hv.setVisible(true);
+			}
+		});
+		lv.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				lv.setVisible(false);
+				hv.setVisible(true);
+				
 			}
 		});
 	}

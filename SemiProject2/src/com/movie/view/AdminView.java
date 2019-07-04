@@ -120,7 +120,7 @@ public class AdminView extends JFrame{
 		tfMovAct.setBounds(230, 290, 380, 50);
 		tfMovAct.setFont(f);
 		laMovOpen = new JLabel("개봉일 :");
-		tfMovOpen = new JTextField();
+		tfMovOpen = new JTextField("YYYY-MM-DD");
 		laMovOpen.setBounds(130, 400, 130, 50);
 		tfMovOpen.setBounds(230, 400, 380, 50);
 		laMovOpen.setFont(f);
@@ -245,8 +245,14 @@ public class AdminView extends JFrame{
 		scheInsPanel.add(laSchTime);
 		scheComTime.addItem("<<< 시간 >>>");
 		scheComTime.addItem("10:00");
+		scheComTime.addItem("11:00");
+		scheComTime.addItem("12:00");
 		scheComTime.addItem("13:00");
+		scheComTime.addItem("14:00");
 		scheComTime.addItem("15:00");
+		scheComTime.addItem("16:00");
+		scheComTime.addItem("17:00");
+		scheComTime.addItem("18:00");
 		
 		btScheIns = new JButton("스케줄 추가");
 		btScheIns.setBounds(255, 760, 250, 30);
@@ -337,7 +343,7 @@ public class AdminView extends JFrame{
 		tfMovTitle.setText("");
 		tfMovDir.setText("");
 		tfMovAct.setText("");
-		tfMovOpen.setText("");
+		tfMovOpen.setText("YYYY-MM-DD");
 		tfMovSyn.setText("");
 		tfMovImage.setText("");
 	}
