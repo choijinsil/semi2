@@ -82,7 +82,6 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// 영화 시간
 	public ArrayList<MovieVO> findScreenDate(String selMovie) {
 
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
@@ -108,7 +107,6 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// 스캐쥴 넘버 조회
 	public int findScheduleNum(String selMovie, String selDate) {
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 		connect();
@@ -228,7 +226,6 @@ public class ReservationDAO {
 		return -1;
 	}
 
-	/////////////////////////////////// moon
 	public int checkPassword(String loginId, String password) {
 		connect();
 		try {
@@ -334,8 +331,6 @@ public class ReservationDAO {
 		return false;
 	}
 
-
-	////////////////////////////////////hana
 	public Vector<SeatVO> seatState(int scheduleNum) {
 		Vector<SeatVO> vo = new Vector<>();
 		connect();
@@ -357,25 +352,6 @@ public class ReservationDAO {
 		}
 		return vo;
 	}
-
-//	public int checkdelReservation(int resNum) {
-//	      connect();
-//	      try {
-//	         String sql = "select count(*) cnt from schedule s where s.schedulenum = ( select r.schedulenum from reservation r where r.resnum = ?) and s.screendate > sysdate";
-//	         pstmt = conn.prepareStatement(sql);
-//	         pstmt.setInt(1, resNum);
-//	         rs = pstmt.executeQuery();
-//	         if (rs.next())
-//	            return rs.getInt("cnt");
-//	      } catch (NumberFormatException e) {
-//	         e.printStackTrace();
-//	      } catch (SQLException e) {
-//	         e.printStackTrace();
-//	      } finally {
-//	         disconnect();
-//	      }
-//	      return 0;
-//	   }
 	
 	public int[] findDeleteDataByResNum(int resNum) {
 		connect();
@@ -414,47 +390,16 @@ public class ReservationDAO {
 	}
 }
 	
-	
-	
-//	public void deleteTotalViewer(int resNum) {
-//		connect();
-//		try {
-//		String sql = "update movie " + 
-//				"set totalViewer = totalViewer - " + 
-//				"(select quantity from reservation where resNum = ?) " + 
-//				"where movieNum = (select s.movieNum from schedule s " + 
-//				"inner join reservation r " + 
-//				"on s.scheduleNum = r.scheduleNum " + 
-//				"where r.resNum = ?)";
-//		pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, resNum);
-//			pstmt.setInt(2, resNum);
-//			pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			disconnect();
-//		}
-//	}
-	
 	public boolean deleteReservation(int resNum) {
 		connect();
 		try {
-//			conn.setAutoCommit(false);
 			String sql = "delete from reservation r where r.resnum = ? and (select count(*) cnt from schedule s where s.schedulenum = ( select r.schedulenum from reservation r where r.resnum = ?) and s.screendate > sysdate)=1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, resNum);
 			pstmt.setInt(2, resNum);
 			int t = pstmt.executeUpdate();
 			if (t == 1) 
-//			{
-//				conn.commit();
-//				conn.setAutoCommit(true);
 				return true;
-//			} else {
-//				conn.rollback();
-//				conn.setAutoCommit(true);
-//			}
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -482,4 +427,44 @@ public class ReservationDAO {
 		}
 	}
 
+//	public int checkdelReservation(int resNum) {
+//  connect();
+//  try {
+//     String sql = "select count(*) cnt from schedule s where s.schedulenum = ( select r.schedulenum from reservation r where r.resnum = ?) and s.screendate > sysdate";
+//     pstmt = conn.prepareStatement(sql);
+//     pstmt.setInt(1, resNum);
+//     rs = pstmt.executeQuery();
+//     if (rs.next())
+//        return rs.getInt("cnt");
+//  } catch (NumberFormatException e) {
+//     e.printStackTrace();
+//  } catch (SQLException e) {
+//     e.printStackTrace();
+//  } finally {
+//     disconnect();
+//  }
+//  return 0;
+//}	
+	
+//	public void deleteTotalViewer(int resNum) {
+//		connect();
+//		try {
+//		String sql = "update movie " + 
+//				"set totalViewer = totalViewer - " + 
+//				"(select quantity from reservation where resNum = ?) " + 
+//				"where movieNum = (select s.movieNum from schedule s " + 
+//				"inner join reservation r " + 
+//				"on s.scheduleNum = r.scheduleNum " + 
+//				"where r.resNum = ?)";
+//		pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, resNum);
+//			pstmt.setInt(2, resNum);
+//			pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//	}	
+	
 }
