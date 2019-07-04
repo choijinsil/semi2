@@ -80,7 +80,9 @@ public class ChoiceView extends JFrame {
 		btPrev = new JButton("이전");
 		btNext.setBounds(1690, 876, 200, 80);
 		btPrev.setBounds(30, 876, 200, 80);
-
+		Font f = new Font("Dialog",Font.BOLD,40);
+		btPrev.setFont(f);
+		btNext.setFont(f);
 		cbMovie = new JComboBox<String>();
 		cbMovie.setFont(new Font("배달의민족 주아", 1, 37));
 
