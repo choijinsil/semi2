@@ -58,6 +58,7 @@ public class HomeController implements ActionListener,FocusListener {
 				public void actionPerformed(ActionEvent e) {
 					if(!(movieTmp.get("id")==null)) {
 						cv.displayTable(new ReservationDAO().findMovieTitle());
+						cv.cbMovie.setSelectedIndex(s+1);
 						hv.setVisible(false);
 						cv.setVisible(true);
 					}else {
