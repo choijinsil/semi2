@@ -143,6 +143,20 @@ public class AdminController implements ActionListener,FocusListener {
 				}
 			}
 		});
+		
+		av.tfDate.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (av.tfDate.getText().matches("[\\d]+")) {
+					if (Integer.parseInt(av.tfDate.getText()) > 3) {
+						av.scheComTime.requestFocus();
+					}
+				}
+				if (av.tfDate.getText().length() == 2) {
+					av.scheComTime.requestFocus();
+				}
+			}
+		});
 	}
 
 	@Override
