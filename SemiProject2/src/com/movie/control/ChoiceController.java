@@ -50,6 +50,25 @@ public class ChoiceController{
       cv.addWindowListener(new WindowAdapter() {
     	  @Override
     	public void windowClosing(WindowEvent e) {
+    		  ArrayList<MovieVO> list = new ReservationDAO().movieSearch();
+    			hv.movieBox.removeAll();
+    			for (int i = 0; i < list.size(); i++) {
+    				hv.movieBox.add(hv.addMoiveBox(list.get(i)));
+    				int s = i;
+    				hv.movieButton.addActionListener(new ActionListener() {
+    					@Override
+    					public void actionPerformed(ActionEvent e) {
+    						if(!(mv.movieTmp.get("id")==null)) {
+    							cv.displayTable(new ReservationDAO().findMovieTitle());
+    							cv.cbMovie.setSelectedIndex(s+1);
+    							hv.setVisible(false);
+    							cv.setVisible(true);
+    						}else {
+    							hv.showMsg("예매를 하시려면 로그인 하세요");
+    						}
+    					}
+    				});
+    			}
     		  cv.setVisible(false);
     		  hv.setVisible(true);
     	}
@@ -102,6 +121,25 @@ public class ChoiceController{
       cv.btPrev.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
+        	 ArrayList<MovieVO> list = new ReservationDAO().movieSearch();
+     		hv.movieBox.removeAll();
+     		for (int i = 0; i < list.size(); i++) {
+     			hv.movieBox.add(hv.addMoiveBox(list.get(i)));
+     			int s = i;
+     			hv.movieButton.addActionListener(new ActionListener() {
+     				@Override
+     				public void actionPerformed(ActionEvent e) {
+     					if(!(mv.movieTmp.get("id")==null)) {
+     						cv.displayTable(new ReservationDAO().findMovieTitle());
+     						cv.cbMovie.setSelectedIndex(s+1);
+     						hv.setVisible(false);
+     						cv.setVisible(true);
+     					}else {
+     						hv.showMsg("예매를 하시려면 로그인 하세요");
+     					}
+     				}
+     			});
+     		}
             cv.setVisible(false);
             hv.setVisible(true);
             cv.cbMovie.removeAllItems();

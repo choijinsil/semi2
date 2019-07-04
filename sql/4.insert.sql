@@ -14,7 +14,7 @@ insert into MEMBERSHIP values(memberSeq.nextval, 'jongsoo', 'b1234', '박종수'
 insert into MEMBERSHIP values(memberSeq.nextval, 'yongjin', 'c1234', '김용진', '010-2322-5678',0);
 insert into MEMBERSHIP values(memberSeq.nextval, 'jinsil', 'd1234', '최진실', '010-2322-1345',0);
 insert into MEMBERSHIP values(memberSeq.nextval, 'moonha', 'e1234', '박문하', '010-2322-6512',0);
-insert into MEMBERSHIP values(1,'admin','admin1!','관리자','010-0000-0000',0);
+insert into MEMBERSHIP values(1,'관리자','rhksfl1!','관리자','010-0000-0000',0);
 
 -- schedule 1
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/05 10','yyyy/mm/dd hh24'));
@@ -40,9 +40,9 @@ insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/06 1
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 10','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 13','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1001, 1, to_date('2019/07/07 16','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 11','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 14','yyyy/mm/dd hh24'));
-insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 17','yyyy/mm/dd hh24'));
+--insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 11','yyyy/mm/dd hh24'))
+--insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 14','yyyy/mm/dd hh24'))
+--insert into schedule values (scheduleSeq.nextval, 1002, 2, to_date('2019/07/07 17','yyyy/mm/dd hh24'))
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 12','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 15','yyyy/mm/dd hh24'));
 insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 18','yyyy/mm/dd hh24')); -- 27
@@ -50,8 +50,8 @@ insert into schedule values (scheduleSeq.nextval, 1003, 3, to_date('2019/07/07 1
 -- reservation
 insert into RESERVATION values (100011,1,10001,2,'A2,A3');    -- 1001
 insert into RESERVATION values (100012,13,10001,3,'A2,A3,A5');  -- 1002
-insert into RESERVATION values (100013,25,10001,1,'A1'); -- 1003
+insert into RESERVATION values (100013,22,10001,1,'A1'); -- 1003
 insert into RESERVATION values (100021,2,10002,2,'A2,A3'); -- 1001
 insert into RESERVATION values (100022,17,10002,2,'A2,A3'); -- 1003
 
--- truncate table reservation;
+-- truncate table reservation

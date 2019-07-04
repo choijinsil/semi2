@@ -334,24 +334,6 @@ public class ReservationDAO {
 		return false;
 	}
 
-	public boolean deleteReservation(int resNum) {
-		connect();
-		try {
-			String sql = "delete from reservation where resnum = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, resNum);
-			int t = pstmt.executeUpdate();
-			if (t == 1)
-				return true;
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-		return false;
-	}
 
 	////////////////////////////////////hana
 	public Vector<SeatVO> seatState(int scheduleNum) {
@@ -376,6 +358,113 @@ public class ReservationDAO {
 		return vo;
 	}
 
+//	public int checkdelReservation(int resNum) {
+//	      connect();
+//	      try {
+//	         String sql = "select count(*) cnt from schedule s where s.schedulenum = ( select r.schedulenum from reservation r where r.resnum = ?) and s.screendate > sysdate";
+//	         pstmt = conn.prepareStatement(sql);
+//	         pstmt.setInt(1, resNum);
+//	         rs = pstmt.executeQuery();
+//	         if (rs.next())
+//	            return rs.getInt("cnt");
+//	      } catch (NumberFormatException e) {
+//	         e.printStackTrace();
+//	      } catch (SQLException e) {
+//	         e.printStackTrace();
+//	      } finally {
+//	         disconnect();
+//	      }
+//	      return 0;
+//	   }
+	
+	public int[] findDeleteDataByResNum(int resNum) {
+		connect();
+		int[] deleteData = new int[2];
+		try {
+			String sql = "select s.movienum movienum, r.quantity quantity from reservation r inner join schedule s " + 
+					"on r.schedulenum = s.schedulenum " + 
+					"where r.resnum = ?";
+			pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, resNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			deleteData[0] = rs.getInt("quantity");
+			deleteData[1] = rs.getInt("movienum");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return deleteData;
+	}
+	
+	public void deleteTotalViewer(int[] deleteData) {
+	connect();
+	try {
+	String sql = "update movie set totalViewer = totalviewer - ? where movienum = ?";
+	pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, deleteData[0]);
+		pstmt.setInt(2, deleteData[1]);
+	 pstmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		disconnect();
+	}
+}
+	
+	
+	
+//	public void deleteTotalViewer(int resNum) {
+//		connect();
+//		try {
+//		String sql = "update movie " + 
+//				"set totalViewer = totalViewer - " + 
+//				"(select quantity from reservation where resNum = ?) " + 
+//				"where movieNum = (select s.movieNum from schedule s " + 
+//				"inner join reservation r " + 
+//				"on s.scheduleNum = r.scheduleNum " + 
+//				"where r.resNum = ?)";
+//		pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, resNum);
+//			pstmt.setInt(2, resNum);
+//			pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//	}
+	
+	public boolean deleteReservation(int resNum) {
+		connect();
+		try {
+//			conn.setAutoCommit(false);
+			String sql = "delete from reservation r where r.resnum = ? and (select count(*) cnt from schedule s where s.schedulenum = ( select r.schedulenum from reservation r where r.resnum = ?) and s.screendate > sysdate)=1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, resNum);
+			pstmt.setInt(2, resNum);
+			int t = pstmt.executeUpdate();
+			if (t == 1) 
+//			{
+//				conn.commit();
+//				conn.setAutoCommit(true);
+				return true;
+//			} else {
+//				conn.rollback();
+//				conn.setAutoCommit(true);
+//			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return false;
+	}
+	
 	private void connect() {
 		try {
 			conn = DriverManager.getConnection(pro.getProperty("url"), pro);

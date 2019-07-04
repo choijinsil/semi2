@@ -15,6 +15,7 @@ import java.util.Map;
 
 import com.movie.VO.MemberVO;
 import com.movie.VO.MovieVO;
+import com.movie.dao.AdminDAO;
 import com.movie.dao.ReservationDAO;
 import com.movie.view.AdminView;
 import com.movie.view.ChoiceView;
@@ -284,22 +285,29 @@ public class HomeController implements ActionListener,FocusListener {
 	         lv.setVisible(true);
 	         
 	      }else if(ob == lv.rescancelButton) {
-	         String resNum = lv.showInput("삭제할 예매번호를 입력해주세요");
+	    	  ReservationDAO dao = new ReservationDAO(); 
+
+	    	  String resNum = lv.showInput("삭제할 예매번호를 입력해주세요");
 	         if(resNum==null) {
 	        	 return;
 	         }
-	         if(!resNum.matches("[0-9]+")) {
+	         if(!resNum.matches("[0-9]{1,9}")) {
 	            lv.showMsg("다시 입력해주세요.");
 	            return;
 	         }
-	         if(!new ReservationDAO().deleteReservation(Integer.parseInt(resNum))) { 
-	            lv.showMsg("다시 입력해주세요.");
-	            return;
+	         
+	         int resN = Integer.parseInt(resNum);
+	         int[] deleteData = dao.findDeleteDataByResNum(resN);
+	         
+	         if(!dao.deleteReservation(resN)){
+	               lv.showMsg("예매번호와 일정을 다시 확인 해주세요.");
+	               return;
 	         }
+	         dao.deleteTotalViewer(deleteData);
+	         
 	         lv.showMsg("삭제에 성공하였습니다.");
-	         lv.displayTable(new ReservationDAO().findReservationInfo(movieTmp.get("id")));
+	         lv.displayTable(dao.findReservationInfo(movieTmp.get("id")));
 	      }
 	}
-	
 	
 }

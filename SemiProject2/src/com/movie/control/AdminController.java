@@ -86,11 +86,13 @@ public class AdminController implements ActionListener,FocusListener {
 					hv.movieBox.removeAll();
 					for (int i = 0; i < list.size(); i++) {
 						hv.movieBox.add(hv.addMoiveBox(list.get(i)));
+						int s = i;
 						hv.movieButton.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								if(!(movieTmp.get("id")==null)) {
 									cv.displayTable(new ReservationDAO().findMovieTitle());
+									cv.cbMovie.setSelectedIndex(s+1);
 									hv.setVisible(false);
 									cv.setVisible(true);
 								}else {
