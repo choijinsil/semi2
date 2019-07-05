@@ -140,9 +140,10 @@ public class ChoiceView extends JFrame {
 	}// displayTable
 
 	public void displayScreenDate(ArrayList<MovieVO> list) {
-		String[] objDate = new String[list.size()];
+		String[] objDate = new String[list.size()+1];
+		objDate[0] = "<<<상영일정>>>";
 		for (int i = 0; i < list.size(); i++) {
-			objDate[i] = list.get(i).getScreenDate();
+			objDate[i+1] = list.get(i).getScreenDate();
 		}
 		DefaultComboBoxModel model = new DefaultComboBoxModel(objDate);
 		dbDate.setModel(model);

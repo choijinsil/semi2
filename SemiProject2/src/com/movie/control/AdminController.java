@@ -384,6 +384,7 @@ public class AdminController implements ActionListener,FocusListener {
 				av.displayMovTable(dao.findMovAll());
 			}else {
 				av.showMsg("삭제할 수 없는 영화입니다");
+				return;
 				}
 			
 		} else if (ob == av.btMovSyn) {

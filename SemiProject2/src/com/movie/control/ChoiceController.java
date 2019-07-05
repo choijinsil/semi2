@@ -92,7 +92,7 @@ public class ChoiceController{
       cv.dbDate.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            	if(cv.dbDate.getSelectedItem()==null) {
+            	if(cv.dbDate.getSelectedItem()==null || ((String)cv.dbDate.getSelectedItem()).equals("<<<상영일정>>>")) {
             		return;
             	}
                choiceScNum = rDao.findScheduleNum(cv.selMovie, cv.dbDate.getSelectedItem().toString());
@@ -102,10 +102,14 @@ public class ChoiceController{
       cv.btNext.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-        	if(cv.dbDate.getSelectedItem()==null) {
+        	if(cv.dbDate.getSelectedItem()==null || ((String)cv.dbDate.getSelectedItem()).equals("<<<상영일정>>>")) {
         		cv.showMsg("상영스케줄을 선택해 주세요");
         		return;
-        	}//시간 선택안하고 다음버튼 눌렀을 때 null에러 나서 잡고, 메시지 띄움
+        	} 
+//        	else if (((String)cv.dbDate.getSelectedItem()).equals("<<< 상영일정 >>>")) {
+//        		cv.showMsg("상영스케줄을 선택해 주세요");
+//        		return;
+//        	}//시간 선택안하고 다음버튼 눌렀을 때 null에러 나서 잡고, 메시지 띄움
         	
             String[] str = cv.dbDate.getSelectedItem().toString().split(" ");
             mv.movieTmp.put("scheduleNum", choiceScNum + ""); // 스케쥴넘버
