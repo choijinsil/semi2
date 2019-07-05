@@ -49,7 +49,7 @@ public class ReservationDAO {
 		connect();
 		try {
 			String sql = "select m.MOVIETITLE movietitle, m.MOVIENUM movienum, m.movieImage movieImage, m.synopsis synopsis from movie m"
-					+ " where m.movienum = any (select s.movienum from schedule s where s.screendate > sysdate)";
+					+ " where m.movienum = any (select s.movienum from schedule s where s.screendate > sysdate) order by m.totalviewer desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -111,16 +111,14 @@ public class ReservationDAO {
 		ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 		connect();
 		try {
-			String sql = "select ScheduleNum num from schedule  natural join movie "
+			String sql = "select ScheduleNum num from schedule natural join movie "
 					+ "where movieTitle = ? and screenDate = to_date (?,'yyyy/mm/dd hh24:mi')";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, selMovie);
 			pstmt.setString(2, selDate);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				MovieVO vo = new MovieVO();
-				vo.setScheduleNum(rs.getInt("num"));
-				return vo.getScheduleNum();
+			if(rs.next()) {
+				return rs.getInt("num");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -260,8 +258,10 @@ public class ReservationDAO {
 			pstmt.setInt(3, Integer.parseInt(memberNum));
 			pstmt.setInt(4, Integer.parseInt(quantity));
 			pstmt.setString(5, resSeat);
-			pstmt.executeUpdate();
+			int t = pstmt.executeUpdate();
+			if(t==1) {
 			return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

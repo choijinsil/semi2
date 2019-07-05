@@ -24,7 +24,7 @@ public class PaymentView extends JFrame {
 		// label 생성
 		encorePay = new JLabel("엔코아페이");
 		encorePay.setFont(new Font("고딕", Font.BOLD, 80));
-		money10000 = new JLabel("1만원");
+		money10000 = new JLabel("가격: 만원 X");
 		money10000.setFont(new Font("고딕", Font.BOLD, 50));
 
 		String[] labelTitle = { "영화제목", "상영일자", "상영시간", "좌석이름" }; // "예매번호",
@@ -38,7 +38,7 @@ public class PaymentView extends JFrame {
 		add(encorePay);
 		encorePay.setBounds(500, 50, 600, 130);
 		add(money10000);
-		money10000.setBounds(500, 180, 200, 100);
+		money10000.setBounds(470, 180, 300, 100);
 		int y = 300;
 		for (int i = 0; i < label.length; i++) {
 			label[i].setBounds(500, y, 300, 100);
@@ -56,10 +56,10 @@ public class PaymentView extends JFrame {
 
 		// tf 세팅
 		add(tfTickets);
-		tfTickets.setBounds(700, 180, 100, 100);
+		tfTickets.setBounds(770, 180, 100, 100);
 		tfTickets.setFont(new Font("Dialog", Font.BOLD, 80));
 		add(tftotalMoney);
-		tftotalMoney.setBounds(830, 180, 500, 100);
+		tftotalMoney.setBounds(900, 180, 500, 100);
 		tftotalMoney.setFont(new Font("Dialog", Font.BOLD, 80));
 
 		TextField[] tf = { tfMovieTitle, tfMovieDate, tfMovieTime, tfMovieSeat }; // tfTicketNumber,

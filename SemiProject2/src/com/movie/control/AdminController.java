@@ -185,11 +185,13 @@ public class AdminController implements ActionListener,FocusListener {
 				hv.movieBox.removeAll();
 				for (int i = 0; i < list.size(); i++) {
 					hv.movieBox.add(hv.addMoiveBox(list.get(i)));
+					int s = i;
 					hv.movieButton.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(!(movieTmp.get("id")==null)) {
 								cv.displayTable(new ReservationDAO().findMovieTitle());
+								cv.cbMovie.setSelectedIndex(s+1);
 								hv.setVisible(false);
 								cv.setVisible(true);
 							}else {
@@ -242,6 +244,11 @@ public class AdminController implements ActionListener,FocusListener {
 				av.showMsg("잘못된 일정입니다.\n일정을 확인하세요.");
 				return;
 			} 
+			OpenMovVO vo = new OpenMovVO();
+			vo.setMovieTitle(movTitle);
+			vo.setDirector(movDir);
+			vo.setMainActor(movAct);
+			vo.setOpeningDate(movOpen);
 			
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
 
@@ -253,19 +260,15 @@ public class AdminController implements ActionListener,FocusListener {
 					bout.write(buf, 0, read);
 				}
 				fin.close();
+				vo.setMovieImg(bout.toByteArray());
+				bout.close();
 			} catch (FileNotFoundException er) {
 				er.printStackTrace();
 			} catch (IOException er) {
 				er.printStackTrace();
 			}
 
-			bout.toByteArray();
-			OpenMovVO vo = new OpenMovVO();
-			vo.setMovieTitle(movTitle);
-			vo.setDirector(movDir);
-			vo.setMainActor(movAct);
-			vo.setOpeningDate(movOpen);
-			vo.setMovieImg(bout.toByteArray());
+			bout = new ByteArrayOutputStream();
 			try {
 				FileInputStream fin = new FileInputStream(new File(av.tfMovSyn.getText()));
 				byte[] buf = new byte[1024];
@@ -274,12 +277,13 @@ public class AdminController implements ActionListener,FocusListener {
 					bout.write(buf, 0, read);
 				}
 				fin.close();
+				vo.setMovieSyn(bout.toString());
+				bout.close();
 			} catch (FileNotFoundException er) {
 				er.printStackTrace();
 			} catch (IOException er) {
 				er.printStackTrace();
 			}
-			vo.setMovieSyn(bout.toString());
 			AdminDAO dao = new AdminDAO();
 			if (dao.addMovie(vo)) {
 				av.showMsg("영화가 등록되었습니다.");

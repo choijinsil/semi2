@@ -42,7 +42,7 @@ public class AdminDAO {
 		ArrayList<OpenMovVO> list = new ArrayList<OpenMovVO>();
 		connect();
 		try {
-			String sql = "select movieNum, movieTitle, totalViewer, director, mainActor, openingDate from Movie";
+			String sql = "select movieNum, movieTitle, totalViewer, director, mainActor, to_char(openingDate,'YYYY/MM/DD') openingDate from Movie";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while (rs.next()) { // 행 뽑기
@@ -160,7 +160,7 @@ public class AdminDAO {
 	public boolean addMovie(OpenMovVO vo) {
 		connect();
 		try {
-			String sql = "insert into Movie values (movieSeq.nextval,?,0,?,?,(to_date(?,'yyyy/mm/dd')),?,?)";
+			String sql = "insert into Movie values (movieSeq.nextval,?,0,?,?,(to_date(?,'yyyy-mm-dd')),?,?)";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, vo.getMovieTitle());
 			stmt.setString(2, vo.getDirector());
