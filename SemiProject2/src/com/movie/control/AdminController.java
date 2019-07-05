@@ -327,7 +327,7 @@ public class AdminController implements ActionListener,FocusListener {
 				return;
 			}
 			
-			if(!insertDate.isAfter(openingDate)) {
+			if(!(insertDate.isEqual(openingDate)||insertDate.isAfter(openingDate))) {
 				av.showMsg("잘못된 일정입니다.\n영화 개봉일을 확인하세요.");
 				return;
 			}
