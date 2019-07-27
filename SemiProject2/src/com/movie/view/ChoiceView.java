@@ -4,14 +4,18 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,7 +23,11 @@ import com.movie.VO.MovieVO;
 
 public class ChoiceView extends JFrame {
 	public JTextField movieF, dateF, timeF;
-	public JPanel p1, p2, p3;
+	public JPanel fullPanel,pTotal, p1, p2, p3;
+	public JButton btNext, btPrev;
+
+
+	
 
 	// JComboBox 선언
 
@@ -37,6 +45,9 @@ public class ChoiceView extends JFrame {
 	// 선택값
 	public String selMovie; // 타이틀
 	public int selMovieIdx; // 타이틀 인덱스
+	public String selDayIdx; // 날짜 선택 인덱스
+	DateFormat transFormat;
+	Date date;
 
 	ImageIcon[] images = { new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\aladin.jpg"),
 			new ImageIcon("C:\\Users\\Playdata\\git\\semi2\\SemiProject2\\src\\img\\bug.jpg"),
@@ -47,17 +58,24 @@ public class ChoiceView extends JFrame {
 	public ChoiceView() {
 		cal();
 
-		setLayout(new GridLayout(1, 3));
-
+		fullPanel = new JPanel();
+		pTotal = new JPanel();
 		p1 = new JPanel();
 		p2 = new JPanel();
 		p3 = new JPanel();
 
+		fullPanel.setLayout(null);
+		pTotal.setLayout(new GridLayout(1, 3));
+		
 		movieF = new JTextField("영화");
 		dateF = new JTextField("날짜");
 		timeF = new JTextField("시간");
 
-		cbMovie = new JComboBox<String>();
+		btNext = new JButton("다음");
+		btPrev = new JButton("이전");
+		btNext.setBounds(1690, 876, 200, 80);
+		btPrev.setBounds(30, 876, 200, 80);
+
 
 		cbMovie = new JComboBox<String>();
 		// 영화 선택 값 넘기기, 이후 이미지 까지 변경하도록
@@ -82,9 +100,10 @@ public class ChoiceView extends JFrame {
 //		movieTime.setSelectedItem("5시");
 
 		cbMovie.setPreferredSize(new Dimension(450, 100));
-		cbYear.setPreferredSize(new Dimension(150, 50));
-		cbMonth.setPreferredSize(new Dimension(150, 50));
-		cbDay.setPreferredSize(new Dimension(150, 50));
+		cbYear.setPreferredSize(new Dimension(150, 100));
+		cbMonth.setPreferredSize(new Dimension(150, 100));
+		cbDay.setPreferredSize(new Dimension(150, 100));
+		movieTime.setPreferredSize(new Dimension(150,100));
 
 		p1.add(cbMovie);
 
@@ -99,10 +118,19 @@ public class ChoiceView extends JFrame {
 
 		p3.add(timeF);
 
-		add(p1);
-		add(p2);
-		add(p3);
-
+		pTotal.add(p1);
+		pTotal.add(p2);
+		pTotal.add(p3);
+		
+		pTotal.setSize(1920, 900);
+		
+		fullPanel.add(pTotal);
+		fullPanel.add(btNext);
+		fullPanel.add(btPrev);
+		add(fullPanel);
+		
+		
+		
 		setVisible(true);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -129,14 +157,14 @@ public class ChoiceView extends JFrame {
 		int today = calendar.get(Calendar.DAY_OF_MONTH);
 
 		// 년도
-		for (int i = year; i <= year + 1; i++) {
+		for (int i = year; i <= year; i++) {
 			yearArray.add(String.valueOf(i));
 		}
 		cbYear = new JComboBox<String>(yearArray.toArray(new String[yearArray.size()]));
 		cbYear.setSelectedItem(String.valueOf(year));
 
 		// 월
-		for (int i = 1; i <= 12; i++) {
+		for (int i = 7; i <= 7; i++) {
 			monthArray.add(addZeroString(i));
 		}
 		cbMonth = new JComboBox<String>(monthArray.toArray(new String[monthArray.size()]));
@@ -150,6 +178,23 @@ public class ChoiceView extends JFrame {
 			dayArray.add(addZeroString(i));
 		}
 		cbDay = new JComboBox<String>(dayArray.toArray(new String[dayArray.size()]));
+		cbDay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<String> cb = (JComboBox<String>) e.getSource();
+
+				try {
+					selDayIdx = cb.getSelectedItem().toString();
+					transFormat = new SimpleDateFormat("yyyyMMdd");
+					date = transFormat.parse("201907" + selDayIdx);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				// 출력시 꼭 아래 형식으로 출력할것 
+				System.out.println(transFormat.format(date));
+			}
+		});
 
 		String dcom = today >= 10 ? String.valueOf(today) : "0" + today;
 		cbDay.setSelectedItem(dcom);

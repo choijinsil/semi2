@@ -23,9 +23,10 @@ public class ChoiceController {
 
 		cv = mv.cv;
 		rDao = new ReservationDAO();
-
+		
 		cv.displayTable(rDao.findMovieTitle());
 		System.out.println(rDao.findMovieTitle().get(0).getMovieTitle());// 테스트
+		System.out.println("값 잘 가져오니 테스트" + cv.selMovie);
 	}
 
 }
